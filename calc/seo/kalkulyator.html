@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Калькулятор солнечной электростанции в Казахстане — Расчёт за 30 секунд | SolarConnect</title>
+  <meta name="description" content="Онлайн-калькулятор солнечных панелей для дома и бизнеса в Казахстане (Алматы, Астана, Шымкент). Рассчитайте мощность, цену, экономию и срок окупаемости станции.">
+  <link rel="canonical" href="https://solarconnect.kz/kalkulyator">
+  <style>
+    body { font-family: system-ui, sans-serif; margin:0; padding:0; line-height:1.6; color:#222B36; background:#F5F7FA; }
+    .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+    h1 { color: #0E2A47; font-size: 28px; font-weight: 800; }
+    h2 { color: #0E2A47; font-size: 22px; margin-top: 36px; }
+    .seo-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: #FFF; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .seo-table th, .seo-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #D5DCE4; }
+    .seo-table th { background: #0E2A47; color: #FFF; font-weight: 600; }
+    .faq-item { background: #FFF; padding: 16px; border-radius: 8px; margin-bottom: 12px; border: 1px solid #D5DCE4; }
+    .faq-q { font-weight: 700; color: #0E2A47; margin-bottom: 6px; }
+  </style>
+
+  <!-- Structured Data: FAQPage & HowTo -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Сколько стоит солнечная станция для частного дома в Алматы?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Для дома со счётом 40 000 ₸ в месяц требуется станция мощностью 11 кВт ориентировочной стоимостью 2,66 млн ₸. Экономия составляет около 480 000 ₸ в год, а окупаемость — около 5.5 лет."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Какой срок службы солнечных панелей LONGi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Гарантия на выработку панелей LONGi составляет 25 лет. Деградация мощностей не превышает 0.5% в год со второго года эксплуатации."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script src="../sc-calc.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Онлайн-калькулятор солнечной электростанции</h1>
+    <p>
+      Рассчитайте необходимую мощность солнечной станции, ориентировочную стоимость под ключ, годовую выработку и срок окупаемости для вашего дома или бизнеса в Казахстане.
+    </p>
+
+    <!-- Interactive Widget Container with Static Fallback for Crawlers & No-JS -->
+    <div data-sc-calc="home" data-city="almaty" data-bill="62000">
+      <div class="seo-fallback" style="background:#FFF; padding:20px; border-radius:12px; border:1px solid #D5DCE4;">
+        <h3>Типовые расчёты солнечных станций (Алматы, 2026 год)</h3>
+        <p><small>Обновлено: 15.09.2026. Тариф 30 ₸/кВтч.</small></p>
+        <table class="seo-table">
+          <thead>
+            <tr>
+              <th>Счёт за свет/мес</th>
+              <th>Мощность</th>
+              <th>Стоимость</th>
+              <th>Выработка/год</th>
+              <th>Экономия/год</th>
+              <th>Окупаемость</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>20 000 ₸</td><td>5.5 кВт</td><td>1 400 000 ₸</td><td>8 041 кВтч</td><td>240 000 ₸</td><td>5.8 лет</td></tr>
+            <tr><td>40 000 ₸</td><td>11.05 кВт</td><td>2 660 000 ₸</td><td>16 155 кВтч</td><td>480 000 ₸</td><td>5.5 лет</td></tr>
+            <tr><td>62 000 ₸</td><td>16.9 кВт</td><td>4 620 000 ₸</td><td>24 708 кВтч</td><td>741 000 ₸</td><td>6.2 лет</td></tr>
+            <tr><td>100 000 ₸</td><td>27.3 кВт</td><td>6 500 000 ₸</td><td>39 912 кВтч</td><td>1 200 000 ₸</td><td>5.4 лет</td></tr>
+            <tr><td>200 000 ₸</td><td>54.6 кВт</td><td>10 370 000 ₸</td><td>79 825 кВтч</td><td>2 400 000 ₸</td><td>4.3 лет</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h2>Часто задаваемые вопросы (FAQ)</h2>
+    <div class="faq-item">
+      <div class="faq-q">1. Как считается окупаемость солнечной станции?</div>
+      <div>Окупаемость рассчитывается как отношение стоимости монтажа под ключ к годовой экономии на электроэнергии с учётом деградации панелей и ежегодного роста тарифов.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">2. Работает ли станция при отключении городской сети?</div>
+      <div>Сетевые станции выключаются ради безопасности. Для бесперебойной работы при отключениях устанавливаются гибридные инверторы Deye с аккумуляторами LiFePO4.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">3. Можно ли отдавать излишки энергии в городскую сеть?</div>
+      <div>Да, по закону о нетто-потребителях излишки выработки передаются в сеть с зачётом в следующем расчётном периоде.</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SolarConnect - Мультикалькуляторы (Demo)</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #F0F4F8;
+      color: #222B36;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark-mode {
+      background: #0B1622;
+      color: #F0F4F8;
+    }
+    header {
+      background: #0E2A47;
+      color: #FFF;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+    .controls {
+      display: flex;
+      gap: 12px;
+    }
+    button.control-btn {
+      padding: 8px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 6px;
+      background: rgba(255,255,255,0.1);
+      color: #FFF;
+      cursor: pointer;
+    }
+    button.control-btn:hover {
+      background: rgba(255,255,255,0.25);
+    }
+    .demo-section {
+      max-width: 1140px;
+      margin: 32px auto;
+      padding: 0 16px;
+    }
+    .demo-section-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #0E2A47;
+      border-bottom: 2px solid #F5A300;
+      padding-bottom: 6px;
+    }
+    body.dark-mode .demo-section-title {
+      color: #F5A300;
+    }
+  </style>
+  <script src="../sc-calc.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>SolarConnect - Калькуляторы</h1>
+    <div class="controls">
+      <button class="control-btn" id="theme-toggle">Тема: Светлая</button>
+      <button class="control-btn" id="lang-toggle">Язык: RU</button>
+    </div>
+  </header>
+
+  <div class="demo-section">
+    <div class="demo-section-title">1. Блок `universal` (Мультикалькулятор)</div>
+    <div data-sc-calc="universal" data-lead-endpoint="/api/lead"></div>
+  </div>
+
+  <div class="demo-section">
+    <div class="demo-section-title">2. Блок `home` (Для дома и дачи)</div>
+    <div data-sc-calc="home" data-bill="62000" data-city="almaty"></div>
+  </div>
+
+  <div class="demo-section">
+    <div class="demo-section-title">3. Блок `business` (Для бизнеса)</div>
+    <div data-sc-calc="business" data-bill="150000" data-industry="warehouse"></div>
+  </div>
+
+  <div class="demo-section">
+    <div class="demo-section-title">4. Блок `agro` (Для агросектора)</div>
+    <div data-sc-calc="agro" data-city="almaty"></div>
+  </div>
+
+  <div class="demo-section">
+    <div class="demo-section-title">5. Блок `backup` (Резервное питание)</div>
+    <div data-sc-calc="backup"></div>
+  </div>
+
+  <div class="demo-section">
+    <div class="demo-section-title">6. Блок `benefit` (Калькулятор выгоды и LCOE)</div>
+    <div data-sc-calc="benefit" data-bill="62000"></div>
+  </div>
+
+  <div class="demo-section">
+    <div class="demo-section-title">7. Блок `finance` (Рассрочка / Лизинг / Зачёт)</div>
+    <div data-sc-calc="finance" data-bill="62000"></div>
+  </div>
+
+  <div class="demo-section">
+    <div class="demo-section-title">8. Блок `mini` (Мини-виджет для сайдбара)</div>
+    <div data-sc-calc="mini" data-bill="40000"></div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      let isDark = false;
+      let currentLang = "ru";
+
+      const themeBtn = document.getElementById("theme-toggle");
+      const langBtn = document.getElementById("lang-toggle");
+
+      themeBtn.addEventListener("click", () => {
+        isDark = !isDark;
+        document.body.classList.toggle("dark-mode", isDark);
+        themeBtn.textContent = `Тема: ${isDark ? "Тёмная" : "Светлая"}`;
+
+        document.querySelectorAll("[data-sc-calc]").forEach(el => {
+          el.setAttribute("data-theme", isDark ? "dark" : "light");
+        });
+      });
+
+      langBtn.addEventListener("click", () => {
+        currentLang = currentLang === "ru" ? "kk" : "ru";
+        langBtn.textContent = `Язык: ${currentLang.toUpperCase()}`;
+
+        document.querySelectorAll("[data-sc-calc]").forEach(el => {
+          el.setAttribute("data-lang", currentLang);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
