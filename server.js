@@ -13,13 +13,24 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
-  let filePath = path.join(__dirname, req.url === "/" ? "demo/index.html" : req.url);
-  filePath = filePath.split("?")[0];
+  let reqUrl = req.url.split("?")[0];
+
+  if (reqUrl === "/" || reqUrl === "/demo" || reqUrl === "/demo/") {
+    reqUrl = "/calc/demo/index.html";
+  } else if (reqUrl === "/demo/index.html") {
+    reqUrl = "/calc/demo/index.html";
+  } else if (reqUrl === "/seo" || reqUrl === "/kalkulyator") {
+    reqUrl = "/calc/seo/kalkulyator.html";
+  } else if (!reqUrl.startsWith("/calc/")) {
+    reqUrl = "/calc" + reqUrl;
+  }
+
+  const filePath = path.join(__dirname, reqUrl);
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
       res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-      res.end("404 Not Found");
+      res.end(`404 Not Found: ${reqUrl}`);
       return;
     }
 
