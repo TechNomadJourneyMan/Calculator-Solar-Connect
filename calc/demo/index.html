@@ -223,6 +223,8 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      if (window.SCCalc) window.SCCalc.scan();
+
       let isDark = false;
       let currentLang = "ru";
 

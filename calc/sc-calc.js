@@ -3245,10 +3245,12 @@ const SCCalc = {
 
   // Auto-scan on DOM ready
   if (typeof document !== 'undefined') {
+    SCCalc.scan();
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", function() { SCCalc.scan(); });
-    } else {
-      SCCalc.scan();
+    }
+    if (typeof window !== 'undefined') {
+      window.addEventListener("load", function() { SCCalc.scan(); });
     }
   }
 })();
