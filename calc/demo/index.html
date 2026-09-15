@@ -3,22 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SolarConnect - Мультикалькуляторы (Demo)</title>
+  <title>SolarConnect - Интерактивные Калькуляторы (Demo)</title>
   <style>
+    :root {
+      --navy: #0E2A47;
+      --navy-light: #1A3F66;
+      --sun: #F5A300;
+      --sun-hover: #E09400;
+      --bg: #F0F4F8;
+      --card: #FFFFFF;
+      --ink: #1E293B;
+      --gray: #64748B;
+      --line: #CBD5E1;
+    }
+
     body {
-      font-family: system-ui, -apple-system, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       margin: 0;
       padding: 0;
-      background: #F0F4F8;
-      color: #222B36;
+      background: var(--bg);
+      color: var(--ink);
       transition: background 0.3s, color 0.3s;
     }
+
     body.dark-mode {
-      background: #0B1622;
-      color: #F0F4F8;
+      --bg: #0B1622;
+      --card: #132232;
+      --ink: #F0F4F8;
+      --gray: #94A3B8;
+      --line: #2C3E50;
     }
+
     header {
-      background: #0E2A47;
+      background: var(--navy);
       color: #FFF;
       padding: 16px 24px;
       display: flex;
@@ -27,95 +44,265 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 20px rgba(14, 42, 71, 0.15);
+      flex-wrap: wrap;
+      gap: 12px;
     }
+
     header h1 {
       margin: 0;
       font-size: 20px;
-    }
-    .controls {
+      font-weight: 800;
       display: flex;
-      gap: 12px;
+      align-items: center;
+      gap: 8px;
     }
-    button.control-btn {
-      padding: 8px 14px;
+
+    .header-controls {
+      display: flex;
+      gap: 10px;
+    }
+
+    .header-btn {
+      padding: 8px 16px;
       font-size: 14px;
-      font-weight: 600;
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 6px;
+      font-weight: 700;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      border-radius: 8px;
       background: rgba(255,255,255,0.1);
       color: #FFF;
       cursor: pointer;
+      transition: all 0.2s ease;
     }
-    button.control-btn:hover {
-      background: rgba(255,255,255,0.25);
+
+    .header-btn:hover {
+      background: var(--sun);
+      color: var(--navy);
+      border-color: var(--sun);
     }
-    .demo-section {
+
+    .nav-container {
       max-width: 1140px;
-      margin: 32px auto;
+      margin: 24px auto 0 auto;
       padding: 0 16px;
     }
-    .demo-section-title {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: #0E2A47;
-      border-bottom: 2px solid #F5A300;
-      padding-bottom: 6px;
+
+    .calc-menu {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      background: var(--card);
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
     }
-    body.dark-mode .demo-section-title {
-      color: #F5A300;
+
+    .calc-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: inherit;
+      color: var(--navy);
+      background: #F8FAFC;
+      border: 2px solid var(--line);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    body.dark-mode .calc-btn {
+      color: #FFF;
+      background: #182A3E;
+    }
+
+    .calc-btn:hover {
+      border-color: var(--sun);
+      transform: translateY(-1px);
+    }
+
+    .calc-btn.active {
+      background: var(--sun);
+      color: var(--navy);
+      border-color: var(--sun);
+      box-shadow: 0 4px 14px rgba(245, 163, 0, 0.35);
+    }
+
+    .demo-content {
+      max-width: 1140px;
+      margin: 24px auto 48px auto;
+      padding: 0 16px;
+    }
+
+    .demo-section {
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      margin-bottom: 24px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .demo-section.hidden {
+      display: none;
+    }
+
+    .demo-section-header {
+      background: var(--navy);
+      color: #FFF;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .demo-section-title {
+      font-size: 17px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+    }
+
+    .demo-section-toggle {
+      font-size: 18px;
+      transition: transform 0.2s ease;
+    }
+
+    .demo-section.collapsed .demo-section-body {
+      display: none;
+    }
+
+    .demo-section.collapsed .demo-section-toggle {
+      transform: rotate(-90deg);
+    }
+
+    .demo-section-body {
+      padding: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .calc-btn {
+        flex: 1 1 calc(50% - 10px);
+        justify-content: center;
+        padding: 10px 12px;
+        font-size: 13px;
+      }
     }
   </style>
   <script src="../sc-calc.js" defer></script>
 </head>
 <body>
   <header>
-    <h1>SolarConnect - Калькуляторы</h1>
-    <div class="controls">
-      <button class="control-btn" id="theme-toggle">Тема: Светлая</button>
-      <button class="control-btn" id="lang-toggle">Язык: RU</button>
+    <h1>☀️ SolarConnect — Калькуляторы солнечных станций</h1>
+    <div class="header-controls">
+      <button class="header-btn" id="theme-toggle">Тема: Светлая</button>
+      <button class="header-btn" id="lang-toggle">Язык: RU</button>
     </div>
   </header>
 
-  <div class="demo-section">
-    <div class="demo-section-title">1. Блок `universal` (Мультикалькулятор)</div>
-    <div data-sc-calc="universal" data-lead-endpoint="/api/lead"></div>
+  <div class="nav-container">
+    <div class="calc-menu" id="calc-menu">
+      <button class="calc-btn active" data-target="all">🌐 Все калькуляторы</button>
+      <button class="calc-btn" data-target="universal">✨ Мультикалькулятор</button>
+      <button class="calc-btn" data-target="home">🏠 Для дома и дачи</button>
+      <button class="calc-btn" data-target="business">🏢 Для бизнеса</button>
+      <button class="calc-btn" data-target="agro">🚜 Агросектор</button>
+      <button class="calc-btn" data-target="backup">⚡ Резервное питание</button>
+      <button class="calc-btn" data-target="benefit">📈 Выгода & LCOE</button>
+      <button class="calc-btn" data-target="finance">💳 Рассрочка & Лизинг</button>
+      <button class="calc-btn" data-target="mini">📱 Мини-виджет</button>
+    </div>
   </div>
 
-  <div class="demo-section">
-    <div class="demo-section-title">2. Блок `home` (Для дома и дачи)</div>
-    <div data-sc-calc="home" data-bill="62000" data-city="almaty"></div>
-  </div>
+  <div class="demo-content">
+    <div class="demo-section" id="sec-universal" data-block="universal">
+      <div class="demo-section-header">
+        <h2 class="demo-section-title">1. Блок universal — Мультикалькулятор (Выбор объекта)</h2>
+        <span class="demo-section-toggle">▼</span>
+      </div>
+      <div class="demo-section-body">
+        <div data-sc-calc="universal" data-lead-endpoint="/api/lead"></div>
+      </div>
+    </div>
 
-  <div class="demo-section">
-    <div class="demo-section-title">3. Блок `business` (Для бизнеса)</div>
-    <div data-sc-calc="business" data-bill="150000" data-industry="warehouse"></div>
-  </div>
+    <div class="demo-section" id="sec-home" data-block="home">
+      <div class="demo-section-header">
+        <h2 class="demo-section-title">2. Блок home — Расчёт для дома и дачи</h2>
+        <span class="demo-section-toggle">▼</span>
+      </div>
+      <div class="demo-section-body">
+        <div data-sc-calc="home" data-bill="62000" data-city="almaty"></div>
+      </div>
+    </div>
 
-  <div class="demo-section">
-    <div class="demo-section-title">4. Блок `agro` (Для агросектора)</div>
-    <div data-sc-calc="agro" data-city="almaty"></div>
-  </div>
+    <div class="demo-section" id="sec-business" data-block="business">
+      <div class="demo-section-header">
+        <h2 class="demo-section-title">3. Блок business — Коммерческий расчёт для бизнеса</h2>
+        <span class="demo-section-toggle">▼</span>
+      </div>
+      <div class="demo-section-body">
+        <div data-sc-calc="business" data-bill="150000" data-industry="warehouse"></div>
+      </div>
+    </div>
 
-  <div class="demo-section">
-    <div class="demo-section-title">5. Блок `backup` (Резервное питание)</div>
-    <div data-sc-calc="backup"></div>
-  </div>
+    <div class="demo-section" id="sec-agro" data-block="agro">
+      <div class="demo-section-header">
+        <h2 class="demo-section-title">4. Блок agro — Калькулятор для агросектора и фермеров</h2>
+        <span class="demo-section-toggle">▼</span>
+      </div>
+      <div class="demo-section-body">
+        <div data-sc-calc="agro" data-city="almaty"></div>
+      </div>
+    </div>
 
-  <div class="demo-section">
-    <div class="demo-section-title">6. Блок `benefit` (Калькулятор выгоды и LCOE)</div>
-    <div data-sc-calc="benefit" data-bill="62000"></div>
-  </div>
+    <div class="demo-section" id="sec-backup" data-block="backup">
+      <div class="demo-section-header">
+        <h2 class="demo-section-title">5. Блок backup — Резервное питание и накопители Deye</h2>
+        <span class="demo-section-toggle">▼</span>
+      </div>
+      <div class="demo-section-body">
+        <div data-sc-calc="backup"></div>
+      </div>
+    </div>
 
-  <div class="demo-section">
-    <div class="demo-section-title">7. Блок `finance` (Рассрочка / Лизинг / Зачёт)</div>
-    <div data-sc-calc="finance" data-bill="62000"></div>
-  </div>
+    <div class="demo-section" id="sec-benefit" data-block="benefit">
+      <div class="demo-section-header">
+        <h2 class="demo-section-title">6. Блок benefit — Финансовая выгода и LCOE</h2>
+        <span class="demo-section-toggle">▼</span>
+      </div>
+      <div class="demo-section-body">
+        <div data-sc-calc="benefit" data-bill="62000"></div>
+      </div>
+    </div>
 
-  <div class="demo-section">
-    <div class="demo-section-title">8. Блок `mini` (Мини-виджет для сайдбара)</div>
-    <div data-sc-calc="mini" data-bill="40000"></div>
+    <div class="demo-section" id="sec-finance" data-block="finance">
+      <div class="demo-section-header">
+        <h2 class="demo-section-title">7. Блок finance — Рассрочка, Лизинг и Зачёт излишков</h2>
+        <span class="demo-section-toggle">▼</span>
+      </div>
+      <div class="demo-section-body">
+        <div data-sc-calc="finance" data-bill="62000"></div>
+      </div>
+    </div>
+
+    <div class="demo-section" id="sec-mini" data-block="mini">
+      <div class="demo-section-header">
+        <h2 class="demo-section-title">8. Блок mini — Экспресс мини-виджет</h2>
+        <span class="demo-section-toggle">▼</span>
+      </div>
+      <div class="demo-section-body">
+        <div data-sc-calc="mini" data-bill="40000"></div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -125,7 +312,40 @@
 
       const themeBtn = document.getElementById("theme-toggle");
       const langBtn = document.getElementById("lang-toggle");
+      const menuBtns = document.querySelectorAll(".calc-btn");
+      const sections = document.querySelectorAll(".demo-section");
 
+      // Filter calc blocks by active target button
+      menuBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const target = btn.getAttribute("data-target");
+
+          menuBtns.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          sections.forEach(sec => {
+            const blockName = sec.getAttribute("data-block");
+            if (target === "all" || target === blockName) {
+              sec.classList.remove("hidden");
+              sec.classList.remove("collapsed");
+            } else {
+              sec.classList.add("hidden");
+            }
+          });
+        });
+      });
+
+      // Accordion toggle on headers
+      sections.forEach(sec => {
+        const header = sec.querySelector(".demo-section-header");
+        if (header) {
+          header.addEventListener("click", () => {
+            sec.classList.toggle("collapsed");
+          });
+        }
+      });
+
+      // Theme toggle
       themeBtn.addEventListener("click", () => {
         isDark = !isDark;
         document.body.classList.toggle("dark-mode", isDark);
@@ -136,6 +356,7 @@
         });
       });
 
+      // Language toggle
       langBtn.addEventListener("click", () => {
         currentLang = currentLang === "ru" ? "kk" : "ru";
         langBtn.textContent = `Язык: ${currentLang.toUpperCase()}`;
