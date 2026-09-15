@@ -149,22 +149,24 @@ export function renderBusinessBlock(widget, container) {
       <details class="sc-accordion">
         <summary class="sc-accordion-header">Таблица денежного потока (первые 10 лет)</summary>
         <div class="sc-accordion-content">
-          <table class="sc-table">
-            <thead>
-              <tr><th>Год</th><th>Экономия (₸)</th><th>O&M (₸)</th><th>Чистый поток (₸)</th><th>Накопленный (₸)</th></tr>
-            </thead>
-            <tbody>
-              ${result.cashflow.slice(0, 10).map(c => `
-                <tr>
-                  <td>${c.year}</td>
-                  <td>${formatCurrency(c.saving)}</td>
-                  <td>${formatCurrency(c.opex)}</td>
-                  <td>${formatCurrency(c.net)}</td>
-                  <td><strong>${formatCurrency(c.cumulative)}</strong></td>
-                </tr>
-              `).join("")}
-            </tbody>
-          </table>
+          <div class="sc-table-wrapper">
+            <table class="sc-table">
+              <thead>
+                <tr><th>Год</th><th>Экономия (₸)</th><th>O&M (₸)</th><th>Чистый поток (₸)</th><th>Накопленный (₸)</th></tr>
+              </thead>
+              <tbody>
+                ${result.cashflow.slice(0, 10).map(c => `
+                  <tr>
+                    <td>${c.year}</td>
+                    <td>${formatCurrency(c.saving)}</td>
+                    <td>${formatCurrency(c.opex)}</td>
+                    <td>${formatCurrency(c.net)}</td>
+                    <td><strong>${formatCurrency(c.cumulative)}</strong></td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+          </div>
         </div>
       </details>
     </div>

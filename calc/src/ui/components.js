@@ -55,10 +55,10 @@ export function renderPackageCard(result, widget) {
         </div>
       </div>
       <div style="display: flex; gap: 10px; align-items: center; margin-top: 12px; flex-wrap: wrap;">
-        <div style="font-size: 20px; font-weight: 800; color: var(--sc-navy); flex: 1;">
+        <div style="font-size: 20px; font-weight: 800; color: var(--sc-navy); min-width: 140px;">
           ${formattedPrice}
         </div>
-        <a href="${pkg.url}" target="_blank" rel="noopener" class="sc-btn js-track-pkg-order" data-pkg-id="${pkg.id}" style="text-decoration: none;">
+        <a href="${pkg.url}" target="_blank" rel="noopener" class="sc-btn sc-btn-full-mobile js-track-pkg-order" data-pkg-id="${pkg.id}" style="text-decoration: none; flex: 1; min-width: 200px;">
           Заказать комплект на solarconnect.kz →
         </a>
       </div>

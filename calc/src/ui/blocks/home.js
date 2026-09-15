@@ -157,21 +157,23 @@ export function renderHomeBlock(widget, container) {
           <span>▼</span>
         </summary>
         <div class="sc-accordion-content">
-          <table class="sc-table">
-            <thead>
-              <tr><th>Параметр</th><th>Значение</th><th>Статус</th><th>Источник</th></tr>
-            </thead>
-            <tbody>
-              ${result.assumptions.map(a => `
-                <tr>
-                  <td>${a.label}</td>
-                  <td><strong>${a.value}</strong></td>
-                  <td><span class="sc-badge ${a.status === "FACT" ? "sc-badge-fact" : a.status === "ОЦЕНКА" ? "sc-badge-estimate" : "sc-badge-assumption"}">${a.status}</span></td>
-                  <td>${a.source}</td>
-                </tr>
-              `).join("")}
-            </tbody>
-          </table>
+          <div class="sc-table-wrapper">
+            <table class="sc-table">
+              <thead>
+                <tr><th>Параметр</th><th>Значение</th><th>Статус</th><th>Источник</th></tr>
+              </thead>
+              <tbody>
+                ${result.assumptions.map(a => `
+                  <tr>
+                    <td>${a.label}</td>
+                    <td><strong>${a.value}</strong></td>
+                    <td><span class="sc-badge ${a.status === "FACT" ? "sc-badge-fact" : a.status === "ОЦЕНКА" ? "sc-badge-estimate" : "sc-badge-assumption"}">${a.status}</span></td>
+                    <td>${a.source}</td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+          </div>
         </div>
       </details>
 
