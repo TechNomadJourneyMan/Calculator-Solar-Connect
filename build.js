@@ -30,11 +30,13 @@ const widgetSrc = fs.readFileSync(path.join(rootDir, "calc", "src", "ui", "widge
 function cleanESM(code) {
   return code
     .replace(/^import\s+[\s\S]*?;/gm, "")
-    .replace(/^export\s+default\s+/gm, "")
-    .replace(/^export\s+const\s+/gm, "const ")
-    .replace(/^export\s+function\s+/gm, "function ")
-    .replace(/^export\s+let\s+/gm, "let ")
-    .replace(/^export\s+class\s+/gm, "class ");
+    .replace(/\bexport\s+default\s+/g, "")
+    .replace(/\bexport\s+async\s+function\s+/g, "async function ")
+    .replace(/\bexport\s+function\s+/g, "function ")
+    .replace(/\bexport\s+const\s+/g, "const ")
+    .replace(/\bexport\s+let\s+/g, "let ")
+    .replace(/\bexport\s+class\s+/g, "class ")
+    .replace(/\bexport\s+/g, "");
 }
 
 const bundledCode = `

@@ -32,7 +32,7 @@ export function renderUniversalBlock(widget, container) {
     return;
   }
 
-  // Step 0 Launcher: 4 segment cards
+  // Step 0 Launcher: 4 interactive segment cards
   container.innerHTML = `
     <div class="sc-container">
       <div class="sc-header" style="text-align: center;">
@@ -41,29 +41,29 @@ export function renderUniversalBlock(widget, container) {
       </div>
 
       <div class="sc-grid-4">
-        <div class="sc-card js-select-segment" data-segment="home" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-align: center;">
-          <div style="font-size: 36px; margin-bottom: 8px;">🏠</div>
-          <div style="font-weight: 700; font-size: 16px; color: var(--sc-navy); margin-bottom: 4px;">${t("universal.home.title", lang)}</div>
-          <div style="font-size: 13px; color: var(--sc-gray);">${t("universal.home.desc", lang)}</div>
-        </div>
+        <button type="button" class="sc-card js-select-segment" data-segment="home" style="cursor: pointer; text-align: center; border: 1.5px solid var(--sc-line); background: var(--sc-card); padding: 24px; border-radius: var(--sc-radius); transition: all 0.2s ease;">
+          <div style="font-size: 40px; margin-bottom: 12px;">🏠</div>
+          <div style="font-weight: 700; font-size: 17px; color: var(--sc-navy); margin-bottom: 6px;">${t("universal.home.title", lang)}</div>
+          <div style="font-size: 13px; color: var(--sc-gray); font-weight: normal;">${t("universal.home.desc", lang)}</div>
+        </button>
 
-        <div class="sc-card js-select-segment" data-segment="business" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-align: center;">
-          <div style="font-size: 36px; margin-bottom: 8px;">🏢</div>
-          <div style="font-weight: 700; font-size: 16px; color: var(--sc-navy); margin-bottom: 4px;">${t("universal.biz.title", lang)}</div>
-          <div style="font-size: 13px; color: var(--sc-gray);">${t("universal.biz.desc", lang)}</div>
-        </div>
+        <button type="button" class="sc-card js-select-segment" data-segment="business" style="cursor: pointer; text-align: center; border: 1.5px solid var(--sc-line); background: var(--sc-card); padding: 24px; border-radius: var(--sc-radius); transition: all 0.2s ease;">
+          <div style="font-size: 40px; margin-bottom: 12px;">🏢</div>
+          <div style="font-weight: 700; font-size: 17px; color: var(--sc-navy); margin-bottom: 6px;">${t("universal.biz.title", lang)}</div>
+          <div style="font-size: 13px; color: var(--sc-gray); font-weight: normal;">${t("universal.biz.desc", lang)}</div>
+        </button>
 
-        <div class="sc-card js-select-segment" data-segment="agro" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-align: center;">
-          <div style="font-size: 36px; margin-bottom: 8px;">🚜</div>
-          <div style="font-weight: 700; font-size: 16px; color: var(--sc-navy); margin-bottom: 4px;">${t("universal.agro.title", lang)}</div>
-          <div style="font-size: 13px; color: var(--sc-gray);">${t("universal.agro.desc", lang)}</div>
-        </div>
+        <button type="button" class="sc-card js-select-segment" data-segment="agro" style="cursor: pointer; text-align: center; border: 1.5px solid var(--sc-line); background: var(--sc-card); padding: 24px; border-radius: var(--sc-radius); transition: all 0.2s ease;">
+          <div style="font-size: 40px; margin-bottom: 12px;">🚜</div>
+          <div style="font-weight: 700; font-size: 17px; color: var(--sc-navy); margin-bottom: 6px;">${t("universal.agro.title", lang)}</div>
+          <div style="font-size: 13px; color: var(--sc-gray); font-weight: normal;">${t("universal.agro.desc", lang)}</div>
+        </button>
 
-        <div class="sc-card js-select-segment" data-segment="backup" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-align: center;">
-          <div style="font-size: 36px; margin-bottom: 8px;">⚡</div>
-          <div style="font-weight: 700; font-size: 16px; color: var(--sc-navy); margin-bottom: 4px;">${t("universal.backup.title", lang)}</div>
-          <div style="font-size: 13px; color: var(--sc-gray);">${t("universal.backup.desc", lang)}</div>
-        </div>
+        <button type="button" class="sc-card js-select-segment" data-segment="backup" style="cursor: pointer; text-align: center; border: 1.5px solid var(--sc-line); background: var(--sc-card); padding: 24px; border-radius: var(--sc-radius); transition: all 0.2s ease;">
+          <div style="font-size: 40px; margin-bottom: 12px;">⚡</div>
+          <div style="font-weight: 700; font-size: 17px; color: var(--sc-navy); margin-bottom: 6px;">${t("universal.backup.title", lang)}</div>
+          <div style="font-size: 13px; color: var(--sc-gray); font-weight: normal;">${t("universal.backup.desc", lang)}</div>
+        </button>
       </div>
     </div>
   `;

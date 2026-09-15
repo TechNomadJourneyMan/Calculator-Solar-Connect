@@ -1496,7 +1496,7 @@ function getUtmParams() {
  * @param {function} onSuccess Callback on success
  * @param {function} onError Callback on failure
  */
-export async function submitLead(payload, endpoint = "/api/lead", onSuccess, onError) {
+async function submitLead(payload, endpoint = "/api/lead", onSuccess, onError) {
   // Check local rate limit
   if (!checkRateLimit()) {
     if (onError) onError(new Error("Превышен лимит отправок. Пожалуйста, попробуйте позже или напишите в WhatsApp."));
@@ -2677,7 +2677,7 @@ function renderUniversalBlock(widget, container) {
     return;
   }
 
-  // Step 0 Launcher: 4 segment cards
+  // Step 0 Launcher: 4 interactive segment cards
   container.innerHTML = `
     <div class="sc-container">
       <div class="sc-header" style="text-align: center;">
@@ -2686,29 +2686,29 @@ function renderUniversalBlock(widget, container) {
       </div>
 
       <div class="sc-grid-4">
-        <div class="sc-card js-select-segment" data-segment="home" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-align: center;">
-          <div style="font-size: 36px; margin-bottom: 8px;">🏠</div>
-          <div style="font-weight: 700; font-size: 16px; color: var(--sc-navy); margin-bottom: 4px;">${t("universal.home.title", lang)}</div>
-          <div style="font-size: 13px; color: var(--sc-gray);">${t("universal.home.desc", lang)}</div>
-        </div>
+        <button type="button" class="sc-card js-select-segment" data-segment="home" style="cursor: pointer; text-align: center; border: 1.5px solid var(--sc-line); background: var(--sc-card); padding: 24px; border-radius: var(--sc-radius); transition: all 0.2s ease;">
+          <div style="font-size: 40px; margin-bottom: 12px;">🏠</div>
+          <div style="font-weight: 700; font-size: 17px; color: var(--sc-navy); margin-bottom: 6px;">${t("universal.home.title", lang)}</div>
+          <div style="font-size: 13px; color: var(--sc-gray); font-weight: normal;">${t("universal.home.desc", lang)}</div>
+        </button>
 
-        <div class="sc-card js-select-segment" data-segment="business" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-align: center;">
-          <div style="font-size: 36px; margin-bottom: 8px;">🏢</div>
-          <div style="font-weight: 700; font-size: 16px; color: var(--sc-navy); margin-bottom: 4px;">${t("universal.biz.title", lang)}</div>
-          <div style="font-size: 13px; color: var(--sc-gray);">${t("universal.biz.desc", lang)}</div>
-        </div>
+        <button type="button" class="sc-card js-select-segment" data-segment="business" style="cursor: pointer; text-align: center; border: 1.5px solid var(--sc-line); background: var(--sc-card); padding: 24px; border-radius: var(--sc-radius); transition: all 0.2s ease;">
+          <div style="font-size: 40px; margin-bottom: 12px;">🏢</div>
+          <div style="font-weight: 700; font-size: 17px; color: var(--sc-navy); margin-bottom: 6px;">${t("universal.biz.title", lang)}</div>
+          <div style="font-size: 13px; color: var(--sc-gray); font-weight: normal;">${t("universal.biz.desc", lang)}</div>
+        </button>
 
-        <div class="sc-card js-select-segment" data-segment="agro" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-align: center;">
-          <div style="font-size: 36px; margin-bottom: 8px;">🚜</div>
-          <div style="font-weight: 700; font-size: 16px; color: var(--sc-navy); margin-bottom: 4px;">${t("universal.agro.title", lang)}</div>
-          <div style="font-size: 13px; color: var(--sc-gray);">${t("universal.agro.desc", lang)}</div>
-        </div>
+        <button type="button" class="sc-card js-select-segment" data-segment="agro" style="cursor: pointer; text-align: center; border: 1.5px solid var(--sc-line); background: var(--sc-card); padding: 24px; border-radius: var(--sc-radius); transition: all 0.2s ease;">
+          <div style="font-size: 40px; margin-bottom: 12px;">🚜</div>
+          <div style="font-weight: 700; font-size: 17px; color: var(--sc-navy); margin-bottom: 6px;">${t("universal.agro.title", lang)}</div>
+          <div style="font-size: 13px; color: var(--sc-gray); font-weight: normal;">${t("universal.agro.desc", lang)}</div>
+        </button>
 
-        <div class="sc-card js-select-segment" data-segment="backup" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-align: center;">
-          <div style="font-size: 36px; margin-bottom: 8px;">⚡</div>
-          <div style="font-weight: 700; font-size: 16px; color: var(--sc-navy); margin-bottom: 4px;">${t("universal.backup.title", lang)}</div>
-          <div style="font-size: 13px; color: var(--sc-gray);">${t("universal.backup.desc", lang)}</div>
-        </div>
+        <button type="button" class="sc-card js-select-segment" data-segment="backup" style="cursor: pointer; text-align: center; border: 1.5px solid var(--sc-line); background: var(--sc-card); padding: 24px; border-radius: var(--sc-radius); transition: all 0.2s ease;">
+          <div style="font-size: 40px; margin-bottom: 12px;">⚡</div>
+          <div style="font-weight: 700; font-size: 17px; color: var(--sc-navy); margin-bottom: 6px;">${t("universal.backup.title", lang)}</div>
+          <div style="font-size: 13px; color: var(--sc-gray); font-weight: normal;">${t("universal.backup.desc", lang)}</div>
+        </button>
       </div>
     </div>
   `;
@@ -2773,7 +2773,7 @@ class SCCalcWidget {
     this.element = element;
     this.options = { ...options };
     this.blockType = options.block || element.getAttribute("data-sc-calc") || "home";
-    this.config = DEFAULT_CONFIG;
+    this.config = { ...DEFAULT_CONFIG };
     this.state = this.loadDraftState();
     this.currentResult = null;
     this.eventListeners = { result: [], lead: [], error: [] };
@@ -2793,42 +2793,44 @@ class SCCalcWidget {
       this.shadowRoot = this.element.shadowRoot;
     }
 
-    // 2. Load Config
-    await this.loadConfig();
-
-    // 3. Render initial view
+    // 2. Render initial view IMMEDIATELY using fallback config (Instant UI, no blank flash!)
     this.render();
 
+    // 3. Load external Config in background if available
+    await this.loadConfig();
+
     // 4. Track View Event
-    trackEvent("calc_view", { block: this.blockType, page: window.location.href });
+    trackEvent("calc_view", { block: this.blockType, page: typeof window !== "undefined" ? window.location.href : "" });
   }
 
   async loadConfig() {
+    if (typeof fetch !== "function") return;
     const configUrl = this.options.config || this.element.getAttribute("data-config") || "/calc/config.json";
     try {
       const res = await fetch(configUrl);
       if (res.ok) {
         const json = await res.json();
         this.config = { ...DEFAULT_CONFIG, ...json };
+        this.render(); // Re-render with fetched config
       }
     } catch (e) {
-      console.warn("[SCCalc] Config fetch failed, using built-in fallback config.", e);
-      this.config = DEFAULT_CONFIG;
+      // Keep built-in config if fetch fails
     }
   }
 
   loadDraftState() {
     try {
-      const saved = localStorage.getItem("sc_calc_draft");
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (parsed.timestamp && Date.now() - parsed.timestamp < 30 * 24 * 3600 * 1000) {
-          return parsed.data || {};
+      if (typeof localStorage !== "undefined") {
+        const saved = localStorage.getItem("sc_calc_draft");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.timestamp && Date.now() - parsed.timestamp < 30 * 24 * 3600 * 1000) {
+            return parsed.data || {};
+          }
         }
       }
     } catch (e) {}
 
-    // Attribute overrides
     const attrBill = this.element.getAttribute("data-bill");
     const attrCity = this.element.getAttribute("data-city");
     const attrInd = this.element.getAttribute("data-industry");
@@ -2842,7 +2844,7 @@ class SCCalcWidget {
 
   saveDraftState() {
     try {
-      // Clean non-PII calculation state
+      if (typeof localStorage === "undefined") return;
       const safeState = { ...this.state };
       delete safeState.name;
       delete safeState.phone;
@@ -2866,7 +2868,6 @@ class SCCalcWidget {
   render() {
     if (!this.shadowRoot) return;
 
-    // Build container HTML & embed styles inside Shadow DOM
     const cssText = INLINED_CSS;
     let contentContainer = this.shadowRoot.querySelector(".sc-widget-root");
 
@@ -2932,7 +2933,6 @@ class SCCalcWidget {
           <p class="sc-subtitle" style="margin-bottom: 16px;">${t("form.promise", lang)}</p>
 
           <form class="js-lead-form">
-            <!-- Honeypot -->
             <input type="text" name="hp_check" style="display:none;" tabindex="-1" autocomplete="off">
 
             <div class="sc-form-group">
@@ -2974,7 +2974,6 @@ class SCCalcWidget {
       </div>
     `;
 
-    // Handlers
     modalContainer.querySelector(".js-modal-close").addEventListener("click", () => this.closeLeadModal());
 
     const phoneInput = modalContainer.querySelector(".js-input-phone");
@@ -3012,7 +3011,7 @@ class SCCalcWidget {
       const payload = {
         source: "calculator",
         block: this.blockType,
-        page: window.location.href,
+        page: typeof window !== "undefined" ? window.location.href : "",
         created_at: new Date().toISOString(),
         contact: { name, phone, consent },
         input: { ...this.state, address, timing },
@@ -3073,7 +3072,6 @@ class SCCalcWidget {
   }
 }
 
-// Global SCCalc API singleton
 const instanceMap = new Map();
 
 const SCCalc = {
