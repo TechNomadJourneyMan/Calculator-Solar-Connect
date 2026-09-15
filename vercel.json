@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "routes": [
+    { "src": "/sc-calc.js", "dest": "/sc-calc.js" },
+    { "src": "/calc/(.*)", "dest": "/calc/$1" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}

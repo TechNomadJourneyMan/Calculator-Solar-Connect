@@ -15,17 +15,14 @@ const MIME_TYPES = {
 const server = http.createServer((req, res) => {
   let reqUrl = req.url.split("?")[0];
 
-  if (reqUrl === "/" || reqUrl === "/demo" || reqUrl === "/demo/") {
-    reqUrl = "/calc/demo/index.html";
-  } else if (reqUrl === "/demo/index.html") {
-    reqUrl = "/calc/demo/index.html";
+  let filePath = path.join(__dirname, reqUrl);
+  if (reqUrl === "/" || reqUrl === "/index.html" || reqUrl === "/demo" || reqUrl === "/demo/") {
+    filePath = path.join(__dirname, "index.html");
   } else if (reqUrl === "/seo" || reqUrl === "/kalkulyator") {
-    reqUrl = "/calc/seo/kalkulyator.html";
-  } else if (!reqUrl.startsWith("/calc/")) {
-    reqUrl = "/calc" + reqUrl;
+    filePath = path.join(__dirname, "calc", "seo", "kalkulyator.html");
+  } else if (!fs.existsSync(filePath) && !reqUrl.startsWith("/calc/")) {
+    filePath = path.join(__dirname, "calc", reqUrl);
   }
-
-  const filePath = path.join(__dirname, reqUrl);
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {

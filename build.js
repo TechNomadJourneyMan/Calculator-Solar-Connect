@@ -92,4 +92,6 @@ const bundledCode = `
 
 const outputPath = path.join(rootDir, "calc", "sc-calc.js");
 fs.writeFileSync(outputPath, bundledCode, "utf8");
-console.log(`[Build] Output bundle written to ${outputPath} (${(fs.statSync(outputPath).size / 1024).toFixed(1)} KB)`);
+const rootOutputPath = path.join(rootDir, "sc-calc.js");
+fs.writeFileSync(rootOutputPath, bundledCode, "utf8");
+console.log(`[Build] Output bundle written to ${outputPath} and ${rootOutputPath} (${(fs.statSync(outputPath).size / 1024).toFixed(1)} KB)`);
