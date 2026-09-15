@@ -7,6 +7,7 @@ import { calcDieselVsSolar } from "../../core/finance.js";
 import { formatCurrency, formatKW, pluralize } from "../../core/format.js";
 import { t } from "../i18n.js";
 import { trackEvent } from "../../analytics/track.js";
+import { renderEcoBox, renderPackageCard } from "../components.js";
 
 export function renderAgroBlock(widget, container) {
   const lang = widget.options.lang || "ru";
@@ -84,6 +85,9 @@ export function renderAgroBlock(widget, container) {
               <div style="font-size:14px; color: var(--sc-green); font-weight:700;">Себестоимость 1 кВтч: Дизель ~${dieselComp.dieselLcoe} ₸ vs Солнце ~${dieselComp.solarLcoe} ₸</div>
             </div>
           ` : ""}
+
+          ${renderEcoBox(result)}
+          ${renderPackageCard(result, widget)}
 
           <div style="display: flex; gap: 12px;">
             <button class="sc-btn sc-btn-full js-open-lead">${t("form.submit", lang)}</button>

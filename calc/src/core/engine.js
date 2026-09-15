@@ -1,5 +1,5 @@
 /**
- * SolarConnect Calculation Engine - Core Physics & Economics
+ * SolarConnect Calculation Engine - Core Physics, Economics & Eco Metrics
  * Pure functions, zero DOM dependencies, ES2019.
  */
 
@@ -15,7 +15,13 @@ export const DEFAULT_CONFIG = {
       yieldPerKw: 1462,
       monthly: [4.0, 5.0, 8.0, 9.5, 11.0, 12.0, 12.5, 11.5, 10.0, 8.0, 5.0, 3.5],
       verified: true
-    }
+    },
+    almaty_region: { name: "Алматинская область", tariff: 30, yieldPerKw: 1462, monthly: [4.0, 5.0, 8.0, 9.5, 11.0, 12.0, 12.5, 11.5, 10.0, 8.0, 5.0, 3.5], verified: false },
+    astana: { name: "Астана", tariff: 30, yieldPerKw: 1400, monthly: [3.5, 4.5, 8.5, 10.0, 11.5, 12.5, 13.0, 12.0, 9.5, 7.5, 4.5, 3.0], verified: false },
+    shymkent: { name: "Шымкент", tariff: 30, yieldPerKw: 1520, monthly: [4.5, 5.5, 8.0, 9.5, 11.0, 12.0, 12.0, 11.5, 10.0, 8.0, 5.0, 3.0], verified: false },
+    karaganda: { name: "Караганда", tariff: 30, yieldPerKw: 1420, monthly: [3.8, 4.8, 8.2, 9.8, 11.2, 12.2, 12.8, 11.8, 9.8, 7.8, 4.8, 3.0], verified: false },
+    taraz: { name: "Тараз", tariff: 30, yieldPerKw: 1500, monthly: [4.2, 5.2, 8.0, 9.5, 11.0, 12.0, 12.2, 11.6, 10.0, 8.0, 5.1, 3.2], verified: false },
+    konaev: { name: "Конаев", tariff: 30, yieldPerKw: 1470, monthly: [4.0, 5.0, 8.0, 9.5, 11.0, 12.0, 12.5, 11.5, 10.0, 8.0, 5.0, 3.5], verified: false }
   },
   segments: {
     home: { min: 3, max: 20, selfShare: 0.35 },
@@ -28,15 +34,15 @@ export const DEFAULT_CONFIG = {
     agro: [[6.5, 511498], [13, 449211], [26, 413153]]
   },
   kits: [
-    { id: "home-6.5", segment: "home", name: "Дом-минимум", kw: 6.5, price: 1600181, storageKwh: 0 },
-    { id: "home-13", segment: "home", name: "Дом-оптимум", kw: 13, price: 3105988, storageKwh: 0 },
-    { id: "home-19.5", segment: "home", name: "Дом-максимум", kw: 19.5, price: 5777863, storageKwh: 0 },
-    { id: "biz-65", segment: "business", name: "Бизнес-65", kw: 65, price: 12000000, storageKwh: 0 },
-    { id: "biz-105", segment: "business", name: "Бизнес-105", kw: 105.3, price: 20000000, storageKwh: 0 },
-    { id: "biz-210", segment: "business", name: "Бизнес-210", kw: 210.6, price: 40000000, storageKwh: 0 },
-    { id: "agro-6.5", segment: "agro", name: "Агро-6.5", kw: 6.5, price: 3324738, storageKwh: 5 },
-    { id: "agro-13", segment: "agro", name: "Агро-13", kw: 13, price: 5839738, storageKwh: 16 },
-    { id: "agro-26", segment: "agro", name: "Агро-26", kw: 26, price: 10741975, storageKwh: 32 }
+    { id: "home-6.5", segment: "home", name: "Дом-минимум", kw: 6.5, price: 1600181, storageKwh: 0, panels: 10, inverter: "Deye 5 кВт", url: "https://solarconnect.kz/dlya-doma" },
+    { id: "home-13", segment: "home", name: "Дом-оптимум", kw: 13, price: 3105988, storageKwh: 0, panels: 20, inverter: "Deye 12 кВт", url: "https://solarconnect.kz/dlya-doma" },
+    { id: "home-19.5", segment: "home", name: "Дом-максимум", kw: 19.5, price: 5777863, storageKwh: 0, panels: 30, inverter: "Deye 20 кВт", url: "https://solarconnect.kz/dlya-doma" },
+    { id: "biz-65", segment: "business", name: "Бизнес-65", kw: 65, price: 12000000, storageKwh: 0, panels: 100, inverter: "Deye 50 кВт", url: "https://solarconnect.kz/dlya-biznesa" },
+    { id: "biz-105", segment: "business", name: "Бизнес-105", kw: 105.3, price: 20000000, storageKwh: 0, panels: 162, inverter: "2x Deye 50 кВт", url: "https://solarconnect.kz/dlya-biznesa" },
+    { id: "biz-210", segment: "business", name: "Бизнес-210", kw: 210.6, price: 40000000, storageKwh: 0, panels: 324, inverter: "4x Deye 50 кВт", url: "https://solarconnect.kz/dlya-biznesa" },
+    { id: "agro-6.5", segment: "agro", name: "Агро-6.5", kw: 6.5, price: 3324738, storageKwh: 5, panels: 10, inverter: "Deye Hybrid 5 кВт", url: "https://solarconnect.kz/agro" },
+    { id: "agro-13", segment: "agro", name: "Агро-13", kw: 13, price: 5839738, storageKwh: 16, panels: 20, inverter: "Deye Hybrid 12 кВт", url: "https://solarconnect.kz/agro" },
+    { id: "agro-26", segment: "agro", name: "Агро-26", kw: 26, price: 10741975, storageKwh: 32, panels: 40, inverter: "Deye Hybrid 20 кВт", url: "https://solarconnect.kz/agro" }
   ],
   kitTolerance: 0.10,
   economics: {
@@ -172,7 +178,6 @@ export function calcSolar(input = {}, config = DEFAULT_CONFIG) {
     warnings.push("Данные по выбранному городу являются предварительной оценкой.");
   }
 
-  // 1. Consumption calculation
   let consumptionYear = 0;
   if (typeof input.consumptionYear === "number" && input.consumptionYear > 0) {
     consumptionYear = input.consumptionYear;
@@ -181,11 +186,9 @@ export function calcSolar(input = {}, config = DEFAULT_CONFIG) {
     consumptionYear = (bill * 12) / tariff;
   }
 
-  // 2. Target kWp calculation & panel stepping (0.65 kW)
   const rawKwpTarget = consumptionYear / yieldPerKw;
   let kwp = Math.max(panelKw, Math.round(rawKwpTarget / panelKw) * panelKw);
 
-  // Segment range clamping
   if (kwp < segConfig.min) {
     warnings.push(`Минимальная мощность для сегмента "${segment}" составляет ${segConfig.min} кВт.`);
     kwp = segConfig.min;
@@ -194,7 +197,6 @@ export function calcSolar(input = {}, config = DEFAULT_CONFIG) {
     kwp = segConfig.max;
   }
 
-  // 3. Roof Area check
   const roofType = input.roofType || "pitched";
   const areaPerKw = (cfg.area && cfg.area[roofType]) || 5;
   let areaNeeded = Math.round(kwp * areaPerKw * 10) / 10;
@@ -213,7 +215,6 @@ export function calcSolar(input = {}, config = DEFAULT_CONFIG) {
     }
   }
 
-  // 4. Kit Matching Rule (Section 6.5)
   const kits = (cfg.kits || []).filter(k => k.segment === segment);
   const tolerance = cfg.kitTolerance || 0.10;
 
@@ -240,22 +241,43 @@ export function calcSolar(input = {}, config = DEFAULT_CONFIG) {
   kwp = Math.round(kwp * 100) / 100;
   areaNeeded = Math.round(kwp * areaPerKw * 10) / 10;
 
-  if (isInterpolatedPrice) {
-    assumptions.push({
-      key: "priceNote",
-      value: "Ориентировочная стоимость",
-      label: "Расчёт цены",
-      source: `Прайс от ${cfg.priceUpdatedAt || "2026-09-15"}`,
-      status: "ОЦЕНКА"
-    });
-  }
+  const panelCount = Math.round(kwp / panelKw);
 
-  // 5. Generation calculation
+  // Recommended Equipment Details Object
+  const recommendedPackage = {
+    id: matchedKit ? matchedKit.id : `custom-${kwp}`,
+    name: matchedKit ? matchedKit.name : `Комплект ${kwp} кВт`,
+    kwp,
+    capex,
+    url: matchedKit ? matchedKit.url : `https://solarconnect.kz/solnechnye-paneli`,
+    panelsCount: matchedKit ? (matchedKit.panels || panelCount) : panelCount,
+    panelModel: "LONGi Hi-MO X10 650 Вт (Mono PERC / N-type)",
+    inverterModel: matchedKit ? matchedKit.inverter : `Deye ${Math.round(kwp * 0.8)} кВт`,
+    storageKwh: matchedKit ? matchedKit.storageKwh : 0,
+    storageModel: (matchedKit && matchedKit.storageKwh > 0) ? `Genix Green LiFePO4 (${matchedKit.storageKwh} кВтч)` : "Без аккумуляторов (Сетевая станция)",
+    warrantyPanels: "25 лет гарантия выработки",
+    warrantyInverter: "5 лет официальная гарантия",
+    warrantyInstall: "2 года гарантия на монтаж",
+    isMatched: !!matchedKit
+  };
+
   const generationYear = Math.round(kwp * yieldPerKw);
   const monthlyProfile = cityConfig.monthly || [4, 5, 8, 9.5, 11, 12, 12.5, 11.5, 10, 8, 5, 3.5];
   const generationMonth = monthlyProfile.map(pct => Math.round(generationYear * pct / 100));
 
-  // 6. Savings Calculation (Mode Net vs Self)
+  // Ecological Metrics Calculation
+  const co2TonsYear = Math.round(((generationYear * 0.85) / 1000) * 10) / 10;
+  const treesSavedYear = Math.round(co2TonsYear * 45);
+  const coalSavedKgYear = Math.round(generationYear * 0.45);
+  const co2Tons25Years = Math.round(co2TonsYear * 25);
+
+  const ecoMetrics = {
+    co2TonsYear,
+    treesSavedYear,
+    coalSavedKgYear,
+    co2Tons25Years
+  };
+
   const mode = input.mode || "net";
   const defaultSelfShare = segConfig.selfShare !== undefined ? segConfig.selfShare : 0.35;
   const selfShare = typeof input.selfShare === "number" ? input.selfShare : defaultSelfShare;
@@ -277,15 +299,6 @@ export function calcSolar(input = {}, config = DEFAULT_CONFIG) {
   const savingMonthAvg = Math.round(savingYear / 12);
   const savingShareOfBill = Math.min(1.0, savingYear / annualBillLimit);
 
-  assumptions.push({
-    key: "mode",
-    value: mode === "net" ? "Полный зачёт (1 к 1)" : `Самопотребление ${Math.round(selfShare * 100)}% + зачёт ${creditRate * 100}%`,
-    label: "Режим учёта выработки",
-    source: cfg.sources?.selfShare || "Допущение калькулятора",
-    status: "ДОПУЩЕНИЕ"
-  });
-
-  // 7. Financial Model (25-year Cashflows)
   const sc = input.scenario || {};
   const years = sc.years || cfg.economics?.horizonYears || 25;
   const tariffGrowth = sc.tariffGrowth !== undefined ? sc.tariffGrowth : cfg.economics?.tariffGrowth ?? 0.07;
@@ -294,22 +307,6 @@ export function calcSolar(input = {}, config = DEFAULT_CONFIG) {
   const omRate = cfg.economics?.omRate ?? 0.005;
   const invYear = cfg.economics?.inverterReplaceYear ?? 13;
   const invShare = cfg.economics?.inverterReplaceShare ?? 0.12;
-
-  assumptions.push({
-    key: "tariffGrowth",
-    value: `${Math.round(tariffGrowth * 100)}% в год`,
-    label: "Рост тарифа",
-    source: "Параметр сценария",
-    status: "ДОПУЩЕНИЕ"
-  });
-
-  assumptions.push({
-    key: "degradation",
-    value: `${(degradation * 100).toFixed(1)}% в год`,
-    label: "Деградация панелей",
-    source: "Типовой паспорт Longi",
-    status: "ДОПУЩЕНИЕ"
-  });
 
   const cashflows = [];
   const rawCashflowSeries = [-capex];
@@ -393,6 +390,8 @@ export function calcSolar(input = {}, config = DEFAULT_CONFIG) {
       price: capex,
       power: kwp
     },
+    recommendedPackage,
+    eco: ecoMetrics,
     capex,
     isInterpolatedPrice,
     generationYear,

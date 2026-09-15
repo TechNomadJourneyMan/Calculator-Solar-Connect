@@ -16,6 +16,7 @@ const chartSrc = fs.readFileSync(path.join(rootDir, "calc", "src", "ui", "chart.
 const submitSrc = fs.readFileSync(path.join(rootDir, "calc", "src", "lead", "submit.js"), "utf8");
 const trackSrc = fs.readFileSync(path.join(rootDir, "calc", "src", "analytics", "track.js"), "utf8");
 
+const componentsSrc = fs.readFileSync(path.join(rootDir, "calc", "src", "ui", "components.js"), "utf8");
 const homeSrc = fs.readFileSync(path.join(rootDir, "calc", "src", "ui", "blocks", "home.js"), "utf8");
 const businessSrc = fs.readFileSync(path.join(rootDir, "calc", "src", "ui", "blocks", "business.js"), "utf8");
 const agroSrc = fs.readFileSync(path.join(rootDir, "calc", "src", "ui", "blocks", "agro.js"), "utf8");
@@ -59,6 +60,7 @@ const bundledCode = `
   ${cleanESM(chartSrc)}
   ${cleanESM(submitSrc)}
   ${cleanESM(trackSrc)}
+  ${cleanESM(componentsSrc)}
 
   ${cleanESM(homeSrc)}
   ${cleanESM(businessSrc)}

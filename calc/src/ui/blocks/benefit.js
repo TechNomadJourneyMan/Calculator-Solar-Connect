@@ -7,6 +7,7 @@ import { formatCurrency, formatKW } from "../../core/format.js";
 import { t } from "../i18n.js";
 import { renderCashflowChart } from "../chart.js";
 import { trackEvent } from "../../analytics/track.js";
+import { renderEcoBox, renderPackageCard } from "../components.js";
 
 export function renderBenefitBlock(widget, container) {
   const lang = widget.options.lang || "ru";
@@ -102,6 +103,9 @@ export function renderBenefitBlock(widget, container) {
             <div class="sc-label">Накопленный дисконтированный денежный поток</div>
             <canvas class="js-cashflow-canvas" style="width:100%; height:200px;"></canvas>
           </div>
+
+          ${renderEcoBox(result)}
+          ${renderPackageCard(result, widget)}
 
           <div style="display: flex; gap: 12px;">
             <button class="sc-btn sc-btn-full js-open-lead">${t("form.submit", lang)}</button>

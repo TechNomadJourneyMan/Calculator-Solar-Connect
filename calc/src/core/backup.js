@@ -95,7 +95,31 @@ export function calcBackup(input = {}, config = DEFAULT_CONFIG) {
   const inverterPrices = { 5: 650000, 8: 950000, 12: 1350000, 20: 2100000, 30: 2900000, 50: 4200000 };
   const invPrice = inverterPrices[selectedInverterKw] || (selectedInverterKw * 100000);
   const batteryPrice = moduleCount * 700000;
-  const estimatedPrice = invPrice + batteryPrice;
+  const estimatedPrice = Math.round((invPrice + batteryPrice) / 10000) * 10000;
+
+  const recommendedPackage = {
+    id: `backup-${selectedInverterKw}-${batteryInstalledKwh}`,
+    name: `Резерв Deye ${selectedInverterKw} кВт + LiFePO4 ${batteryInstalledKwh} кВтч`,
+    kwp: selectedInverterKw,
+    capex: estimatedPrice,
+    url: "https://solarconnect.kz/dlya-doma",
+    panelsCount: 0,
+    panelModel: "Без солнечных панелей (Чистый ИБП)",
+    inverterModel: `Гибридный инвертор Deye ${selectedInverterKw} кВт (${phase}-фазный)`,
+    storageKwh: batteryInstalledKwh,
+    storageModel: `Genix Green LiFePO4 ${batteryInstalledKwh} кВтч (${moduleCount}x 5кВтч)`,
+    warrantyPanels: "Не применимо",
+    warrantyInverter: "5 лет официальная гарантия",
+    warrantyInstall: "2 года гарантия на монтаж",
+    isMatched: true
+  };
+
+  const eco = {
+    co2TonsYear: Math.round(((energyAutonomyKwh * 365 * 0.85) / 1000) * 10) / 10,
+    treesSavedYear: Math.round(((energyAutonomyKwh * 365 * 0.85) / 1000) * 45),
+    coalSavedKgYear: Math.round(energyAutonomyKwh * 365 * 0.45),
+    co2Tons25Years: Math.round(((energyAutonomyKwh * 365 * 0.85) / 1000) * 25)
+  };
 
   return {
     energyDayKwh: Math.round(energyDayKwh * 100) / 100,
@@ -110,7 +134,9 @@ export function calcBackup(input = {}, config = DEFAULT_CONFIG) {
     phase,
     requestedAutonomyHours: hoursAutonomy,
     actualAutonomyHours,
-    estimatedPrice: Math.round(estimatedPrice / 10000) * 10000,
+    estimatedPrice,
+    recommendedPackage,
+    eco,
     activeAppliances,
     excludedAppliances
   };

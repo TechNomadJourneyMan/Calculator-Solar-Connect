@@ -6,6 +6,7 @@ import { calcBackup } from "../../core/backup.js";
 import { formatCurrency, formatKW } from "../../core/format.js";
 import { t } from "../i18n.js";
 import { trackEvent } from "../../analytics/track.js";
+import { renderEcoBox, renderPackageCard } from "../components.js";
 
 export function renderBackupBlock(widget, container) {
   const lang = widget.options.lang || "ru";
@@ -124,6 +125,9 @@ export function renderBackupBlock(widget, container) {
               </div>
             ` : ""}
           </div>
+
+          ${renderEcoBox(result)}
+          ${renderPackageCard(result, widget)}
 
           <div style="display: flex; gap: 12px;">
             <button class="sc-btn sc-btn-full js-open-lead">${t("form.submit", lang)}</button>

@@ -7,6 +7,7 @@ import { formatCurrency, formatKW, formatKWh, pluralize } from "../../core/forma
 import { t } from "../i18n.js";
 import { renderGenerationChart } from "../chart.js";
 import { trackEvent } from "../../analytics/track.js";
+import { renderEcoBox, renderPackageCard } from "../components.js";
 
 export function renderHomeBlock(widget, container) {
   const lang = widget.options.lang || "ru";
@@ -139,6 +140,9 @@ export function renderHomeBlock(widget, container) {
             <div class="sc-label" style="margin-bottom: 12px;">Помесячная выработка (кВтч)</div>
             <canvas class="js-chart-canvas" style="width:100%; height:200px;"></canvas>
           </div>
+
+          ${renderEcoBox(result)}
+          ${renderPackageCard(result, widget)}
 
           <div style="display: flex; gap: 12px; flex-wrap: wrap;">
             <button class="sc-btn sc-btn-full js-open-lead" style="flex: 1;">${t("form.submit", lang)}</button>

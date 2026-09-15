@@ -7,10 +7,10 @@
 (function() {
   'use strict';
 
-  const INLINED_CSS = "/* SolarConnect Calculator Design System */\n:host {\n  --sc-navy: #0E2A47;\n  --sc-navy-light: #1A3F66;\n  --sc-sun: #F5A300;\n  --sc-sun-hover: #E09400;\n  --sc-ink: #222B36;\n  --sc-gray: #5B6775;\n  --sc-gray-light: #8C9BAA;\n  --sc-line: #D5DCE4;\n  --sc-bg: #FFFFFF;\n  --sc-bg-soft: #F5F7FA;\n  --sc-card: #FFFFFF;\n  --sc-green: #2E7D32;\n  --sc-green-bg: #E8F5E9;\n  --sc-red: #C0392B;\n  --sc-red-bg: #FDEDEC;\n  --sc-radius: 14px;\n  --sc-radius-sm: 8px;\n  --sc-font: system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Arial, sans-serif;\n  --sc-shadow: 0 4px 20px rgba(14, 42, 71, 0.08);\n  --sc-shadow-lg: 0 10px 30px rgba(14, 42, 71, 0.12);\n  display: block;\n  font-family: var(--sc-font);\n  color: var(--sc-ink);\n  box-sizing: border-box;\n}\n\n:host([data-theme=\"dark\"]) {\n  --sc-navy: #1E3E62;\n  --sc-navy-light: #2B527E;\n  --sc-ink: #F0F4F8;\n  --sc-gray: #A0B0C0;\n  --sc-gray-light: #6C7D93;\n  --sc-line: #2C3E50;\n  --sc-bg: #0B1622;\n  --sc-bg-soft: #132232;\n  --sc-card: #182A3E;\n  --sc-green: #4CAF50;\n  --sc-green-bg: #1B382B;\n  --sc-red: #E74C3C;\n  --sc-red-bg: #3E1E1E;\n  --sc-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);\n}\n\n*, *:before, *:after {\n  box-sizing: inherit;\n}\n\n.sc-container {\n  width: 100%;\n  max-width: 1100px;\n  margin: 0 auto;\n  padding: 24px;\n  background: var(--sc-bg-soft);\n  border-radius: var(--sc-radius);\n  border: 1px solid var(--sc-line);\n  box-shadow: var(--sc-shadow);\n  transition: background 0.3s ease, border-color 0.3s ease;\n}\n\n.sc-header {\n  margin-bottom: 24px;\n}\n\n.sc-title {\n  font-size: 24px;\n  font-weight: 800;\n  color: var(--sc-navy);\n  margin: 0 0 6px 0;\n  line-height: 1.25;\n}\n\n:host([data-theme=\"dark\"]) .sc-title {\n  color: #FFFFFF;\n}\n\n.sc-subtitle {\n  font-size: 14px;\n  color: var(--sc-gray);\n  margin: 0;\n}\n\n.sc-grid-2 {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 24px;\n}\n\n.sc-grid-3 {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 16px;\n}\n\n.sc-grid-4 {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 16px;\n}\n\n@media (max-width: 768px) {\n  .sc-container {\n    padding: 16px;\n  }\n  .sc-grid-2, .sc-grid-3, .sc-grid-4 {\n    grid-template-columns: 1fr;\n    gap: 16px;\n  }\n}\n\n.sc-card {\n  background: var(--sc-card);\n  border: 1px solid var(--sc-line);\n  border-radius: var(--sc-radius);\n  padding: 20px;\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);\n}\n\n.sc-form-group {\n  margin-bottom: 20px;\n}\n\n.sc-label {\n  display: block;\n  font-size: 14px;\n  font-weight: 600;\n  color: var(--sc-ink);\n  margin-bottom: 8px;\n}\n\n.sc-slider-group {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n}\n\n.sc-input {\n  width: 100%;\n  height: 48px;\n  padding: 0 16px;\n  font-size: 16px;\n  font-family: var(--sc-font);\n  color: var(--sc-ink);\n  background: var(--sc-bg);\n  border: 1.5px solid var(--sc-line);\n  border-radius: var(--sc-radius-sm);\n  outline: none;\n  transition: border-color 0.2s ease, box-shadow 0.2s ease;\n}\n\n.sc-input:focus {\n  border-color: var(--sc-sun);\n  box-shadow: 0 0 0 3px rgba(245, 163, 0, 0.2);\n}\n\n.sc-slider {\n  flex: 1;\n  height: 8px;\n  -webkit-appearance: none;\n  appearance: none;\n  background: var(--sc-line);\n  border-radius: 4px;\n  outline: none;\n  cursor: pointer;\n}\n\n.sc-slider::-webkit-slider-thumb {\n  -webkit-appearance: none;\n  appearance: none;\n  width: 24px;\n  height: 24px;\n  border-radius: 50%;\n  background: var(--sc-sun);\n  border: 3px solid #FFFFFF;\n  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);\n  cursor: pointer;\n  transition: transform 0.15s ease;\n}\n\n.sc-slider::-webkit-slider-thumb:hover {\n  transform: scale(1.15);\n}\n\n.sc-select {\n  width: 100%;\n  height: 48px;\n  padding: 0 16px;\n  font-size: 16px;\n  font-family: var(--sc-font);\n  color: var(--sc-ink);\n  background: var(--sc-bg);\n  border: 1.5px solid var(--sc-line);\n  border-radius: var(--sc-radius-sm);\n  outline: none;\n  cursor: pointer;\n}\n\n.sc-btn {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  height: 52px;\n  padding: 0 24px;\n  font-size: 16px;\n  font-weight: 700;\n  font-family: var(--sc-font);\n  color: var(--sc-navy);\n  background: var(--sc-sun);\n  border: none;\n  border-radius: var(--sc-radius-sm);\n  cursor: pointer;\n  text-decoration: none;\n  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;\n  min-width: 44px;\n  min-height: 44px;\n}\n\n.sc-btn:hover {\n  background: var(--sc-sun-hover);\n  box-shadow: 0 4px 12px rgba(245, 163, 0, 0.3);\n}\n\n.sc-btn:active {\n  transform: translateY(1px);\n}\n\n.sc-btn-full {\n  width: 100%;\n}\n\n.sc-btn-outline {\n  background: transparent;\n  border: 2px solid var(--sc-sun);\n  color: var(--sc-navy);\n}\n\n:host([data-theme=\"dark\"]) .sc-btn-outline {\n  color: #FFFFFF;\n}\n\n.sc-btn-whatsapp {\n  background: #25D366;\n  color: #FFFFFF;\n}\n\n.sc-btn-whatsapp:hover {\n  background: #1EBE5D;\n  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);\n}\n\n.sc-result-box {\n  background: linear-gradient(135deg, var(--sc-navy) 0%, var(--sc-navy-light) 100%);\n  color: #FFFFFF;\n  border-radius: var(--sc-radius);\n  padding: 24px;\n  margin-bottom: 24px;\n  box-shadow: var(--sc-shadow-lg);\n}\n\n.sc-result-highlight {\n  margin-bottom: 16px;\n}\n\n.sc-result-value {\n  font-size: 38px;\n  font-weight: 800;\n  color: var(--sc-sun);\n  line-height: 1.1;\n}\n\n.sc-result-subtext {\n  font-size: 14px;\n  color: rgba(255, 255, 255, 0.85);\n  margin-top: 4px;\n}\n\n.sc-metric-card {\n  background: rgba(255, 255, 255, 0.08);\n  backdrop-filter: blur(10px);\n  border: 1px solid rgba(255, 255, 255, 0.15);\n  border-radius: var(--sc-radius-sm);\n  padding: 14px;\n  text-align: center;\n}\n\n.sc-metric-val {\n  font-size: 20px;\n  font-weight: 700;\n  color: #FFFFFF;\n}\n\n.sc-metric-lbl {\n  font-size: 12px;\n  color: rgba(255, 255, 255, 0.7);\n  margin-top: 2px;\n}\n\n.sc-accordion {\n  border: 1px solid var(--sc-line);\n  border-radius: var(--sc-radius-sm);\n  background: var(--sc-card);\n  margin-top: 16px;\n  overflow: hidden;\n}\n\n.sc-accordion-header {\n  padding: 16px;\n  font-weight: 600;\n  cursor: pointer;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  user-select: none;\n}\n\n.sc-accordion-content {\n  padding: 16px;\n  border-top: 1px solid var(--sc-line);\n  background: var(--sc-bg-soft);\n}\n\n.sc-table {\n  width: 100%;\n  border-collapse: collapse;\n  font-size: 14px;\n}\n\n.sc-table th, .sc-table td {\n  padding: 10px 12px;\n  text-align: left;\n  border-bottom: 1px solid var(--sc-line);\n}\n\n.sc-table th {\n  font-weight: 600;\n  color: var(--sc-gray);\n  background: var(--sc-bg-soft);\n}\n\n.sc-badge {\n  display: inline-block;\n  padding: 2px 8px;\n  border-radius: 4px;\n  font-size: 11px;\n  font-weight: 700;\n}\n\n.sc-badge-fact { background: #E3F2FD; color: #1565C0; }\n.sc-badge-estimate { background: #FFF3E0; color: #E65100; }\n.sc-badge-assumption { background: #F3E5F5; color: #7B1FA2; }\n\n.sc-warning {\n  background: var(--sc-red-bg);\n  border-left: 4px solid var(--sc-red);\n  color: var(--sc-red);\n  padding: 12px 16px;\n  border-radius: var(--sc-radius-sm);\n  font-size: 13px;\n  margin-bottom: 16px;\n}\n\n.sc-disclaimer {\n  font-size: 12px;\n  color: var(--sc-gray);\n  line-height: 1.4;\n  margin-top: 20px;\n}\n\n.sc-tabs {\n  display: flex;\n  gap: 8px;\n  border-bottom: 2px solid var(--sc-line);\n  margin-bottom: 20px;\n  overflow-x: auto;\n}\n\n.sc-tab {\n  padding: 12px 20px;\n  font-size: 15px;\n  font-weight: 600;\n  color: var(--sc-gray);\n  background: none;\n  border: none;\n  border-bottom: 3px solid transparent;\n  cursor: pointer;\n  white-space: nowrap;\n  transition: all 0.2s ease;\n}\n\n.sc-tab.active {\n  color: var(--sc-navy);\n  border-bottom-color: var(--sc-sun);\n}\n\n:host([data-theme=\"dark\"]) .sc-tab.active {\n  color: #FFFFFF;\n}\n\n/* Modal Popup for lead form or detailed view */\n.sc-modal-overlay {\n  position: fixed;\n  top: 0; left: 0; right: 0; bottom: 0;\n  background: rgba(14, 42, 71, 0.6);\n  backdrop-filter: blur(4px);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  z-index: 9999;\n  padding: 16px;\n}\n\n.sc-modal-body {\n  background: var(--sc-card);\n  border-radius: var(--sc-radius);\n  max-width: 600px;\n  width: 100%;\n  max-height: 90vh;\n  overflow-y: auto;\n  padding: 24px;\n  box-shadow: var(--sc-shadow-lg);\n  position: relative;\n}\n\n.sc-modal-close {\n  position: absolute;\n  top: 16px; right: 16px;\n  background: none;\n  border: none;\n  font-size: 24px;\n  color: var(--sc-gray);\n  cursor: pointer;\n}\n";
+  const INLINED_CSS = "/* SolarConnect Calculator Design System - Premium Light Palette */\n:host {\n  --sc-navy: #0E2A47;\n  --sc-navy-light: #1A3F66;\n  --sc-sun: #F5A300;\n  --sc-sun-hover: #E09400;\n  --sc-sun-light: #FFF8E7;\n  --sc-ink: #1E293B;\n  --sc-gray: #64748B;\n  --sc-gray-light: #94A3B8;\n  --sc-line: #E2E8F0;\n  --sc-bg: #FFFFFF;\n  --sc-bg-soft: #F8FAFC;\n  --sc-card: #FFFFFF;\n  --sc-green: #166534;\n  --sc-green-bg: #F0FDF4;\n  --sc-green-border: #BBF7D0;\n  --sc-red: #991B1B;\n  --sc-red-bg: #FEF2F2;\n  --sc-radius: 16px;\n  --sc-radius-sm: 10px;\n  --sc-font: system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Arial, sans-serif;\n  --sc-shadow: 0 4px 20px rgba(14, 42, 71, 0.06);\n  --sc-shadow-lg: 0 12px 32px rgba(14, 42, 71, 0.10);\n  display: block;\n  font-family: var(--sc-font);\n  color: var(--sc-ink);\n  box-sizing: border-box;\n}\n\n:host([data-theme=\"dark\"]) {\n  --sc-navy: #1E3E62;\n  --sc-navy-light: #2B527E;\n  --sc-ink: #F0F4F8;\n  --sc-gray: #A0B0C0;\n  --sc-gray-light: #6C7D93;\n  --sc-line: #2C3E50;\n  --sc-bg: #0B1622;\n  --sc-bg-soft: #132232;\n  --sc-card: #182A3E;\n  --sc-green: #4CAF50;\n  --sc-green-bg: #1B382B;\n  --sc-red: #E74C3C;\n  --sc-red-bg: #3E1E1E;\n  --sc-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);\n}\n\n*, *:before, *:after {\n  box-sizing: inherit;\n}\n\n.sc-container {\n  width: 100%;\n  max-width: 1100px;\n  margin: 0 auto;\n  padding: 28px;\n  background: var(--sc-bg);\n  border-radius: var(--sc-radius);\n  border: 1px solid var(--sc-line);\n  box-shadow: var(--sc-shadow-lg);\n  transition: background 0.3s ease, border-color 0.3s ease;\n}\n\n.sc-header {\n  margin-bottom: 24px;\n}\n\n.sc-title {\n  font-size: 26px;\n  font-weight: 800;\n  color: var(--sc-navy);\n  margin: 0 0 6px 0;\n  line-height: 1.25;\n  letter-spacing: -0.02em;\n}\n\n:host([data-theme=\"dark\"]) .sc-title {\n  color: #FFFFFF;\n}\n\n.sc-subtitle {\n  font-size: 15px;\n  color: var(--sc-gray);\n  margin: 0;\n}\n\n.sc-grid-2 {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 24px;\n}\n\n.sc-grid-3 {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 16px;\n}\n\n.sc-grid-4 {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 16px;\n}\n\n@media (max-width: 768px) {\n  .sc-container {\n    padding: 16px;\n  }\n  .sc-grid-2, .sc-grid-3, .sc-grid-4 {\n    grid-template-columns: 1fr;\n    gap: 16px;\n  }\n}\n\n.sc-card {\n  background: var(--sc-card);\n  border: 1px solid var(--sc-line);\n  border-radius: var(--sc-radius);\n  padding: 20px;\n  box-shadow: 0 2px 10px rgba(14, 42, 71, 0.04);\n}\n\n.sc-form-group {\n  margin-bottom: 20px;\n}\n\n.sc-label {\n  display: block;\n  font-size: 14px;\n  font-weight: 700;\n  color: var(--sc-navy);\n  margin-bottom: 8px;\n}\n\n.sc-slider-group {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n}\n\n.sc-input {\n  width: 100%;\n  height: 48px;\n  padding: 0 16px;\n  font-size: 16px;\n  font-family: var(--sc-font);\n  color: var(--sc-ink);\n  background: var(--sc-bg-soft);\n  border: 1.5px solid var(--sc-line);\n  border-radius: var(--sc-radius-sm);\n  outline: none;\n  transition: border-color 0.2s ease, box-shadow 0.2s ease;\n}\n\n.sc-input:focus {\n  border-color: var(--sc-sun);\n  background: #FFFFFF;\n  box-shadow: 0 0 0 3px rgba(245, 163, 0, 0.2);\n}\n\n.sc-slider {\n  flex: 1;\n  height: 8px;\n  -webkit-appearance: none;\n  appearance: none;\n  background: var(--sc-line);\n  border-radius: 4px;\n  outline: none;\n  cursor: pointer;\n}\n\n.sc-slider::-webkit-slider-thumb {\n  -webkit-appearance: none;\n  appearance: none;\n  width: 24px;\n  height: 24px;\n  border-radius: 50%;\n  background: var(--sc-sun);\n  border: 3px solid #FFFFFF;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);\n  cursor: pointer;\n  transition: transform 0.15s ease;\n}\n\n.sc-slider::-webkit-slider-thumb:hover {\n  transform: scale(1.15);\n}\n\n.sc-select {\n  width: 100%;\n  height: 48px;\n  padding: 0 16px;\n  font-size: 16px;\n  font-family: var(--sc-font);\n  color: var(--sc-ink);\n  background: var(--sc-bg-soft);\n  border: 1.5px solid var(--sc-line);\n  border-radius: var(--sc-radius-sm);\n  outline: none;\n  cursor: pointer;\n}\n\n.sc-btn {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  height: 52px;\n  padding: 0 24px;\n  font-size: 16px;\n  font-weight: 700;\n  font-family: var(--sc-font);\n  color: var(--sc-navy);\n  background: var(--sc-sun);\n  border: none;\n  border-radius: var(--sc-radius-sm);\n  cursor: pointer;\n  text-decoration: none;\n  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;\n  min-width: 44px;\n  min-height: 44px;\n}\n\n.sc-btn:hover {\n  background: var(--sc-sun-hover);\n  box-shadow: 0 4px 14px rgba(245, 163, 0, 0.35);\n}\n\n.sc-btn:active {\n  transform: translateY(1px);\n}\n\n.sc-btn-full {\n  width: 100%;\n}\n\n.sc-btn-outline {\n  background: transparent;\n  border: 2px solid var(--sc-sun);\n  color: var(--sc-navy);\n}\n\n:host([data-theme=\"dark\"]) .sc-btn-outline {\n  color: #FFFFFF;\n}\n\n.sc-btn-whatsapp {\n  background: #25D366;\n  color: #FFFFFF;\n}\n\n.sc-btn-whatsapp:hover {\n  background: #1EBE5D;\n  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);\n}\n\n.sc-result-box {\n  background: linear-gradient(135deg, var(--sc-navy) 0%, var(--sc-navy-light) 100%);\n  color: #FFFFFF;\n  border-radius: var(--sc-radius);\n  padding: 24px;\n  margin-bottom: 20px;\n  box-shadow: var(--sc-shadow-lg);\n}\n\n.sc-result-highlight {\n  margin-bottom: 16px;\n}\n\n.sc-result-value {\n  font-size: 40px;\n  font-weight: 800;\n  color: var(--sc-sun);\n  line-height: 1.1;\n  letter-spacing: -0.02em;\n}\n\n.sc-result-subtext {\n  font-size: 14px;\n  color: rgba(255, 255, 255, 0.85);\n  margin-top: 4px;\n}\n\n.sc-metric-card {\n  background: rgba(255, 255, 255, 0.08);\n  backdrop-filter: blur(10px);\n  border: 1px solid rgba(255, 255, 255, 0.15);\n  border-radius: var(--sc-radius-sm);\n  padding: 14px;\n  text-align: center;\n}\n\n.sc-metric-val {\n  font-size: 20px;\n  font-weight: 800;\n  color: #FFFFFF;\n}\n\n.sc-metric-lbl {\n  font-size: 12px;\n  color: rgba(255, 255, 255, 0.75);\n  margin-top: 2px;\n}\n\n/* Featured Recommended Package Card */\n.sc-pkg-card {\n  background: var(--sc-sun-light);\n  border: 2px solid var(--sc-sun);\n  border-radius: var(--sc-radius);\n  padding: 20px;\n  margin-bottom: 20px;\n  box-shadow: var(--sc-shadow);\n}\n\n.sc-pkg-title {\n  font-size: 18px;\n  font-weight: 800;\n  color: var(--sc-navy);\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 12px;\n}\n\n.sc-pkg-tag {\n  background: var(--sc-sun);\n  color: var(--sc-navy);\n  font-size: 11px;\n  font-weight: 800;\n  padding: 4px 10px;\n  border-radius: 20px;\n  text-transform: uppercase;\n}\n\n.sc-pkg-specs {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 10px;\n  font-size: 13px;\n  color: var(--sc-ink);\n  margin-bottom: 14px;\n}\n\n.sc-pkg-spec-item {\n  display: flex;\n  align-items: center;\n  gap: 6px;\n}\n\n.sc-eco-box {\n  background: var(--sc-green-bg);\n  border: 1px solid var(--sc-green-border);\n  border-radius: var(--sc-radius);\n  padding: 16px 20px;\n  margin-bottom: 20px;\n  color: var(--sc-green);\n}\n\n.sc-eco-title {\n  font-weight: 800;\n  font-size: 15px;\n  margin-bottom: 8px;\n  display: flex;\n  align-items: center;\n  gap: 6px;\n}\n\n.sc-eco-grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 12px;\n  font-size: 13px;\n  text-align: center;\n}\n\n.sc-eco-stat {\n  font-size: 18px;\n  font-weight: 800;\n}\n\n.sc-accordion {\n  border: 1px solid var(--sc-line);\n  border-radius: var(--sc-radius-sm);\n  background: var(--sc-card);\n  margin-top: 16px;\n  overflow: hidden;\n}\n\n.sc-accordion-header {\n  padding: 16px;\n  font-weight: 700;\n  color: var(--sc-navy);\n  cursor: pointer;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  user-select: none;\n}\n\n.sc-accordion-content {\n  padding: 16px;\n  border-top: 1px solid var(--sc-line);\n  background: var(--sc-bg-soft);\n}\n\n.sc-table {\n  width: 100%;\n  border-collapse: collapse;\n  font-size: 14px;\n}\n\n.sc-table th, .sc-table td {\n  padding: 10px 12px;\n  text-align: left;\n  border-bottom: 1px solid var(--sc-line);\n}\n\n.sc-table th {\n  font-weight: 700;\n  color: var(--sc-navy);\n  background: var(--sc-bg-soft);\n}\n\n.sc-badge {\n  display: inline-block;\n  padding: 2px 8px;\n  border-radius: 4px;\n  font-size: 11px;\n  font-weight: 700;\n}\n\n.sc-badge-fact { background: #E3F2FD; color: #1565C0; }\n.sc-badge-estimate { background: #FFF3E0; color: #E65100; }\n.sc-badge-assumption { background: #F3E5F5; color: #7B1FA2; }\n\n.sc-warning {\n  background: var(--sc-red-bg);\n  border-left: 4px solid var(--sc-red);\n  color: var(--sc-red);\n  padding: 12px 16px;\n  border-radius: var(--sc-radius-sm);\n  font-size: 13px;\n  margin-bottom: 16px;\n}\n\n.sc-disclaimer {\n  font-size: 12px;\n  color: var(--sc-gray);\n  line-height: 1.4;\n  margin-top: 20px;\n}\n\n.sc-tabs {\n  display: flex;\n  gap: 8px;\n  border-bottom: 2px solid var(--sc-line);\n  margin-bottom: 20px;\n  overflow-x: auto;\n}\n\n.sc-tab {\n  padding: 12px 20px;\n  font-size: 15px;\n  font-weight: 700;\n  color: var(--sc-gray);\n  background: none;\n  border: none;\n  border-bottom: 3px solid transparent;\n  cursor: pointer;\n  white-space: nowrap;\n  transition: all 0.2s ease;\n}\n\n.sc-tab.active {\n  color: var(--sc-navy);\n  border-bottom-color: var(--sc-sun);\n}\n\n:host([data-theme=\"dark\"]) .sc-tab.active {\n  color: #FFFFFF;\n}\n\n.sc-modal-overlay {\n  position: fixed;\n  top: 0; left: 0; right: 0; bottom: 0;\n  background: rgba(14, 42, 71, 0.65);\n  backdrop-filter: blur(4px);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  z-index: 9999;\n  padding: 16px;\n}\n\n.sc-modal-body {\n  background: var(--sc-card);\n  border-radius: var(--sc-radius);\n  max-width: 600px;\n  width: 100%;\n  max-height: 90vh;\n  overflow-y: auto;\n  padding: 28px;\n  box-shadow: var(--sc-shadow-lg);\n  position: relative;\n}\n\n.sc-modal-close {\n  position: absolute;\n  top: 16px; right: 16px;\n  background: none;\n  border: none;\n  font-size: 24px;\n  color: var(--sc-gray);\n  cursor: pointer;\n}\n";
 
   /**
- * SolarConnect Calculation Engine - Core Physics & Economics
+ * SolarConnect Calculation Engine - Core Physics, Economics & Eco Metrics
  * Pure functions, zero DOM dependencies, ES2019.
  */
 
@@ -26,7 +26,13 @@ const DEFAULT_CONFIG = {
       yieldPerKw: 1462,
       monthly: [4.0, 5.0, 8.0, 9.5, 11.0, 12.0, 12.5, 11.5, 10.0, 8.0, 5.0, 3.5],
       verified: true
-    }
+    },
+    almaty_region: { name: "Алматинская область", tariff: 30, yieldPerKw: 1462, monthly: [4.0, 5.0, 8.0, 9.5, 11.0, 12.0, 12.5, 11.5, 10.0, 8.0, 5.0, 3.5], verified: false },
+    astana: { name: "Астана", tariff: 30, yieldPerKw: 1400, monthly: [3.5, 4.5, 8.5, 10.0, 11.5, 12.5, 13.0, 12.0, 9.5, 7.5, 4.5, 3.0], verified: false },
+    shymkent: { name: "Шымкент", tariff: 30, yieldPerKw: 1520, monthly: [4.5, 5.5, 8.0, 9.5, 11.0, 12.0, 12.0, 11.5, 10.0, 8.0, 5.0, 3.0], verified: false },
+    karaganda: { name: "Караганда", tariff: 30, yieldPerKw: 1420, monthly: [3.8, 4.8, 8.2, 9.8, 11.2, 12.2, 12.8, 11.8, 9.8, 7.8, 4.8, 3.0], verified: false },
+    taraz: { name: "Тараз", tariff: 30, yieldPerKw: 1500, monthly: [4.2, 5.2, 8.0, 9.5, 11.0, 12.0, 12.2, 11.6, 10.0, 8.0, 5.1, 3.2], verified: false },
+    konaev: { name: "Конаев", tariff: 30, yieldPerKw: 1470, monthly: [4.0, 5.0, 8.0, 9.5, 11.0, 12.0, 12.5, 11.5, 10.0, 8.0, 5.0, 3.5], verified: false }
   },
   segments: {
     home: { min: 3, max: 20, selfShare: 0.35 },
@@ -39,15 +45,15 @@ const DEFAULT_CONFIG = {
     agro: [[6.5, 511498], [13, 449211], [26, 413153]]
   },
   kits: [
-    { id: "home-6.5", segment: "home", name: "Дом-минимум", kw: 6.5, price: 1600181, storageKwh: 0 },
-    { id: "home-13", segment: "home", name: "Дом-оптимум", kw: 13, price: 3105988, storageKwh: 0 },
-    { id: "home-19.5", segment: "home", name: "Дом-максимум", kw: 19.5, price: 5777863, storageKwh: 0 },
-    { id: "biz-65", segment: "business", name: "Бизнес-65", kw: 65, price: 12000000, storageKwh: 0 },
-    { id: "biz-105", segment: "business", name: "Бизнес-105", kw: 105.3, price: 20000000, storageKwh: 0 },
-    { id: "biz-210", segment: "business", name: "Бизнес-210", kw: 210.6, price: 40000000, storageKwh: 0 },
-    { id: "agro-6.5", segment: "agro", name: "Агро-6.5", kw: 6.5, price: 3324738, storageKwh: 5 },
-    { id: "agro-13", segment: "agro", name: "Агро-13", kw: 13, price: 5839738, storageKwh: 16 },
-    { id: "agro-26", segment: "agro", name: "Агро-26", kw: 26, price: 10741975, storageKwh: 32 }
+    { id: "home-6.5", segment: "home", name: "Дом-минимум", kw: 6.5, price: 1600181, storageKwh: 0, panels: 10, inverter: "Deye 5 кВт", url: "https://solarconnect.kz/dlya-doma" },
+    { id: "home-13", segment: "home", name: "Дом-оптимум", kw: 13, price: 3105988, storageKwh: 0, panels: 20, inverter: "Deye 12 кВт", url: "https://solarconnect.kz/dlya-doma" },
+    { id: "home-19.5", segment: "home", name: "Дом-максимум", kw: 19.5, price: 5777863, storageKwh: 0, panels: 30, inverter: "Deye 20 кВт", url: "https://solarconnect.kz/dlya-doma" },
+    { id: "biz-65", segment: "business", name: "Бизнес-65", kw: 65, price: 12000000, storageKwh: 0, panels: 100, inverter: "Deye 50 кВт", url: "https://solarconnect.kz/dlya-biznesa" },
+    { id: "biz-105", segment: "business", name: "Бизнес-105", kw: 105.3, price: 20000000, storageKwh: 0, panels: 162, inverter: "2x Deye 50 кВт", url: "https://solarconnect.kz/dlya-biznesa" },
+    { id: "biz-210", segment: "business", name: "Бизнес-210", kw: 210.6, price: 40000000, storageKwh: 0, panels: 324, inverter: "4x Deye 50 кВт", url: "https://solarconnect.kz/dlya-biznesa" },
+    { id: "agro-6.5", segment: "agro", name: "Агро-6.5", kw: 6.5, price: 3324738, storageKwh: 5, panels: 10, inverter: "Deye Hybrid 5 кВт", url: "https://solarconnect.kz/agro" },
+    { id: "agro-13", segment: "agro", name: "Агро-13", kw: 13, price: 5839738, storageKwh: 16, panels: 20, inverter: "Deye Hybrid 12 кВт", url: "https://solarconnect.kz/agro" },
+    { id: "agro-26", segment: "agro", name: "Агро-26", kw: 26, price: 10741975, storageKwh: 32, panels: 40, inverter: "Deye Hybrid 20 кВт", url: "https://solarconnect.kz/agro" }
   ],
   kitTolerance: 0.10,
   economics: {
@@ -183,7 +189,6 @@ function calcSolar(input = {}, config = DEFAULT_CONFIG) {
     warnings.push("Данные по выбранному городу являются предварительной оценкой.");
   }
 
-  // 1. Consumption calculation
   let consumptionYear = 0;
   if (typeof input.consumptionYear === "number" && input.consumptionYear > 0) {
     consumptionYear = input.consumptionYear;
@@ -192,11 +197,9 @@ function calcSolar(input = {}, config = DEFAULT_CONFIG) {
     consumptionYear = (bill * 12) / tariff;
   }
 
-  // 2. Target kWp calculation & panel stepping (0.65 kW)
   const rawKwpTarget = consumptionYear / yieldPerKw;
   let kwp = Math.max(panelKw, Math.round(rawKwpTarget / panelKw) * panelKw);
 
-  // Segment range clamping
   if (kwp < segConfig.min) {
     warnings.push(`Минимальная мощность для сегмента "${segment}" составляет ${segConfig.min} кВт.`);
     kwp = segConfig.min;
@@ -205,7 +208,6 @@ function calcSolar(input = {}, config = DEFAULT_CONFIG) {
     kwp = segConfig.max;
   }
 
-  // 3. Roof Area check
   const roofType = input.roofType || "pitched";
   const areaPerKw = (cfg.area && cfg.area[roofType]) || 5;
   let areaNeeded = Math.round(kwp * areaPerKw * 10) / 10;
@@ -224,7 +226,6 @@ function calcSolar(input = {}, config = DEFAULT_CONFIG) {
     }
   }
 
-  // 4. Kit Matching Rule (Section 6.5)
   const kits = (cfg.kits || []).filter(k => k.segment === segment);
   const tolerance = cfg.kitTolerance || 0.10;
 
@@ -251,22 +252,43 @@ function calcSolar(input = {}, config = DEFAULT_CONFIG) {
   kwp = Math.round(kwp * 100) / 100;
   areaNeeded = Math.round(kwp * areaPerKw * 10) / 10;
 
-  if (isInterpolatedPrice) {
-    assumptions.push({
-      key: "priceNote",
-      value: "Ориентировочная стоимость",
-      label: "Расчёт цены",
-      source: `Прайс от ${cfg.priceUpdatedAt || "2026-09-15"}`,
-      status: "ОЦЕНКА"
-    });
-  }
+  const panelCount = Math.round(kwp / panelKw);
 
-  // 5. Generation calculation
+  // Recommended Equipment Details Object
+  const recommendedPackage = {
+    id: matchedKit ? matchedKit.id : `custom-${kwp}`,
+    name: matchedKit ? matchedKit.name : `Комплект ${kwp} кВт`,
+    kwp,
+    capex,
+    url: matchedKit ? matchedKit.url : `https://solarconnect.kz/solnechnye-paneli`,
+    panelsCount: matchedKit ? (matchedKit.panels || panelCount) : panelCount,
+    panelModel: "LONGi Hi-MO X10 650 Вт (Mono PERC / N-type)",
+    inverterModel: matchedKit ? matchedKit.inverter : `Deye ${Math.round(kwp * 0.8)} кВт`,
+    storageKwh: matchedKit ? matchedKit.storageKwh : 0,
+    storageModel: (matchedKit && matchedKit.storageKwh > 0) ? `Genix Green LiFePO4 (${matchedKit.storageKwh} кВтч)` : "Без аккумуляторов (Сетевая станция)",
+    warrantyPanels: "25 лет гарантия выработки",
+    warrantyInverter: "5 лет официальная гарантия",
+    warrantyInstall: "2 года гарантия на монтаж",
+    isMatched: !!matchedKit
+  };
+
   const generationYear = Math.round(kwp * yieldPerKw);
   const monthlyProfile = cityConfig.monthly || [4, 5, 8, 9.5, 11, 12, 12.5, 11.5, 10, 8, 5, 3.5];
   const generationMonth = monthlyProfile.map(pct => Math.round(generationYear * pct / 100));
 
-  // 6. Savings Calculation (Mode Net vs Self)
+  // Ecological Metrics Calculation
+  const co2TonsYear = Math.round(((generationYear * 0.85) / 1000) * 10) / 10;
+  const treesSavedYear = Math.round(co2TonsYear * 45);
+  const coalSavedKgYear = Math.round(generationYear * 0.45);
+  const co2Tons25Years = Math.round(co2TonsYear * 25);
+
+  const ecoMetrics = {
+    co2TonsYear,
+    treesSavedYear,
+    coalSavedKgYear,
+    co2Tons25Years
+  };
+
   const mode = input.mode || "net";
   const defaultSelfShare = segConfig.selfShare !== undefined ? segConfig.selfShare : 0.35;
   const selfShare = typeof input.selfShare === "number" ? input.selfShare : defaultSelfShare;
@@ -288,15 +310,6 @@ function calcSolar(input = {}, config = DEFAULT_CONFIG) {
   const savingMonthAvg = Math.round(savingYear / 12);
   const savingShareOfBill = Math.min(1.0, savingYear / annualBillLimit);
 
-  assumptions.push({
-    key: "mode",
-    value: mode === "net" ? "Полный зачёт (1 к 1)" : `Самопотребление ${Math.round(selfShare * 100)}% + зачёт ${creditRate * 100}%`,
-    label: "Режим учёта выработки",
-    source: cfg.sources?.selfShare || "Допущение калькулятора",
-    status: "ДОПУЩЕНИЕ"
-  });
-
-  // 7. Financial Model (25-year Cashflows)
   const sc = input.scenario || {};
   const years = sc.years || cfg.economics?.horizonYears || 25;
   const tariffGrowth = sc.tariffGrowth !== undefined ? sc.tariffGrowth : cfg.economics?.tariffGrowth ?? 0.07;
@@ -305,22 +318,6 @@ function calcSolar(input = {}, config = DEFAULT_CONFIG) {
   const omRate = cfg.economics?.omRate ?? 0.005;
   const invYear = cfg.economics?.inverterReplaceYear ?? 13;
   const invShare = cfg.economics?.inverterReplaceShare ?? 0.12;
-
-  assumptions.push({
-    key: "tariffGrowth",
-    value: `${Math.round(tariffGrowth * 100)}% в год`,
-    label: "Рост тарифа",
-    source: "Параметр сценария",
-    status: "ДОПУЩЕНИЕ"
-  });
-
-  assumptions.push({
-    key: "degradation",
-    value: `${(degradation * 100).toFixed(1)}% в год`,
-    label: "Деградация панелей",
-    source: "Типовой паспорт Longi",
-    status: "ДОПУЩЕНИЕ"
-  });
 
   const cashflows = [];
   const rawCashflowSeries = [-capex];
@@ -404,6 +401,8 @@ function calcSolar(input = {}, config = DEFAULT_CONFIG) {
       price: capex,
       power: kwp
     },
+    recommendedPackage,
+    eco: ecoMetrics,
     capex,
     isInterpolatedPrice,
     generationYear,
@@ -671,7 +670,31 @@ function calcBackup(input = {}, config = DEFAULT_CONFIG) {
   const inverterPrices = { 5: 650000, 8: 950000, 12: 1350000, 20: 2100000, 30: 2900000, 50: 4200000 };
   const invPrice = inverterPrices[selectedInverterKw] || (selectedInverterKw * 100000);
   const batteryPrice = moduleCount * 700000;
-  const estimatedPrice = invPrice + batteryPrice;
+  const estimatedPrice = Math.round((invPrice + batteryPrice) / 10000) * 10000;
+
+  const recommendedPackage = {
+    id: `backup-${selectedInverterKw}-${batteryInstalledKwh}`,
+    name: `Резерв Deye ${selectedInverterKw} кВт + LiFePO4 ${batteryInstalledKwh} кВтч`,
+    kwp: selectedInverterKw,
+    capex: estimatedPrice,
+    url: "https://solarconnect.kz/dlya-doma",
+    panelsCount: 0,
+    panelModel: "Без солнечных панелей (Чистый ИБП)",
+    inverterModel: `Гибридный инвертор Deye ${selectedInverterKw} кВт (${phase}-фазный)`,
+    storageKwh: batteryInstalledKwh,
+    storageModel: `Genix Green LiFePO4 ${batteryInstalledKwh} кВтч (${moduleCount}x 5кВтч)`,
+    warrantyPanels: "Не применимо",
+    warrantyInverter: "5 лет официальная гарантия",
+    warrantyInstall: "2 года гарантия на монтаж",
+    isMatched: true
+  };
+
+  const eco = {
+    co2TonsYear: Math.round(((energyAutonomyKwh * 365 * 0.85) / 1000) * 10) / 10,
+    treesSavedYear: Math.round(((energyAutonomyKwh * 365 * 0.85) / 1000) * 45),
+    coalSavedKgYear: Math.round(energyAutonomyKwh * 365 * 0.45),
+    co2Tons25Years: Math.round(((energyAutonomyKwh * 365 * 0.85) / 1000) * 25)
+  };
 
   return {
     energyDayKwh: Math.round(energyDayKwh * 100) / 100,
@@ -686,7 +709,9 @@ function calcBackup(input = {}, config = DEFAULT_CONFIG) {
     phase,
     requestedAutonomyHours: hoursAutonomy,
     actualAutonomyHours,
-    estimatedPrice: Math.round(estimatedPrice / 10000) * 10000,
+    estimatedPrice,
+    recommendedPackage,
+    eco,
     activeAppliances,
     excludedAppliances
   };
@@ -1589,10 +1614,79 @@ function trackEvent(eventName, params = {}) {
   }
 }
 
+  /**
+ * SolarConnect UI Shared Component Utilities
+ * Renders Eco Benefit Box and SolarConnect Equipment Package Recommendations.
+ */
+
+
+
+function renderEcoBox(result) {
+  const eco = result.eco || {};
+  return `
+    <div class="sc-eco-box">
+      <div class="sc-eco-title">
+        🌱 Экологический эффект и польза для природы
+      </div>
+      <div class="sc-eco-grid">
+        <div>
+          <div class="sc-eco-stat">-${eco.co2TonsYear || 0} т</div>
+          <div>CO₂ в год</div>
+        </div>
+        <div>
+          <div class="sc-eco-stat">🌳 ${eco.treesSavedYear || 0}</div>
+          <div>деревьев спасено</div>
+        </div>
+        <div>
+          <div class="sc-eco-stat">⚡ ${Math.round(((eco.coalSavedKgYear || 0) / 1000) * 10) / 10} т</div>
+          <div>угля не сожжено</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderPackageCard(result, widget) {
+  const pkg = result.recommendedPackage || {};
+  const formattedPrice = formatCurrency(pkg.capex || result.capex);
+
+  return `
+    <div class="sc-pkg-card">
+      <div class="sc-pkg-title">
+        <span>📦 Рекомендуемый комплект: ${pkg.name} (${pkg.kwp} кВт)</span>
+        <span class="sc-pkg-tag">solarconnect.kz</span>
+      </div>
+      <div class="sc-pkg-specs">
+        <div class="sc-pkg-spec-item">
+          <span>☀️ <strong>Панели:</strong> ${pkg.panelsCount}x ${pkg.panelModel}</span>
+        </div>
+        <div class="sc-pkg-spec-item">
+          <span>⚡ <strong>Инвертор:</strong> ${pkg.inverterModel}</span>
+        </div>
+        <div class="sc-pkg-spec-item">
+          <span>🔋 <strong>Хранение:</strong> ${pkg.storageModel}</span>
+        </div>
+        <div class="sc-pkg-spec-item">
+          <span>🛡️ <strong>Гарантия:</strong> ${pkg.warrantyPanels}</span>
+        </div>
+      </div>
+      <div style="display: flex; gap: 10px; align-items: center; margin-top: 12px; flex-wrap: wrap;">
+        <div style="font-size: 20px; font-weight: 800; color: var(--sc-navy); flex: 1;">
+          ${formattedPrice}
+        </div>
+        <a href="${pkg.url}" target="_blank" rel="noopener" class="sc-btn js-track-pkg-order" data-pkg-id="${pkg.id}" style="text-decoration: none;">
+          Заказать комплект на solarconnect.kz →
+        </a>
+      </div>
+    </div>
+  `;
+}
+
 
   /**
  * SolarConnect Block Preset - Home Calculator (`home`)
  */
+
 
 
 
@@ -1732,6 +1826,9 @@ function renderHomeBlock(widget, container) {
             <canvas class="js-chart-canvas" style="width:100%; height:200px;"></canvas>
           </div>
 
+          ${renderEcoBox(result)}
+          ${renderPackageCard(result, widget)}
+
           <div style="display: flex; gap: 12px; flex-wrap: wrap;">
             <button class="sc-btn sc-btn-full js-open-lead" style="flex: 1;">${t("form.submit", lang)}</button>
             <a href="${widget.getWhatsAppUrl(result)}" target="_blank" rel="noopener" class="sc-btn sc-btn-whatsapp js-track-wa" style="flex: 1;">${t("cta.whatsapp", lang)}</a>
@@ -1822,6 +1919,7 @@ function renderHomeBlock(widget, container) {
   /**
  * SolarConnect Block Preset - Business Calculator (`business`)
  */
+
 
 
 
@@ -1956,6 +2054,9 @@ function renderBusinessBlock(widget, container) {
             <canvas class="js-cashflow-canvas" style="width:100%; height:200px;"></canvas>
           </div>
 
+          ${renderEcoBox(result)}
+          ${renderPackageCard(result, widget)}
+
           <div style="display: flex; gap: 12px; flex-wrap: wrap;">
             <button class="sc-btn sc-btn-full js-open-lead" style="flex: 1;">${t("form.submit", lang)}</button>
             <button class="sc-btn sc-btn-outline js-print-calc" style="flex: 1;">${t("cta.print", lang)}</button>
@@ -2026,6 +2127,7 @@ function renderBusinessBlock(widget, container) {
   /**
  * SolarConnect Block Preset - Agro Calculator (`agro`)
  */
+
 
 
 
@@ -2110,6 +2212,9 @@ function renderAgroBlock(widget, container) {
             </div>
           ` : ""}
 
+          ${renderEcoBox(result)}
+          ${renderPackageCard(result, widget)}
+
           <div style="display: flex; gap: 12px;">
             <button class="sc-btn sc-btn-full js-open-lead">${t("form.submit", lang)}</button>
             <a href="${widget.getWhatsAppUrl(result)}" target="_blank" rel="noopener" class="sc-btn sc-btn-whatsapp">${t("cta.whatsapp", lang)}</a>
@@ -2131,6 +2236,7 @@ function renderAgroBlock(widget, container) {
   /**
  * SolarConnect Block Preset - Backup Calculator (`backup`)
  */
+
 
 
 
@@ -2255,6 +2361,9 @@ function renderBackupBlock(widget, container) {
             ` : ""}
           </div>
 
+          ${renderEcoBox(result)}
+          ${renderPackageCard(result, widget)}
+
           <div style="display: flex; gap: 12px;">
             <button class="sc-btn sc-btn-full js-open-lead">${t("form.submit", lang)}</button>
             <a href="${widget.getWhatsAppUrl(result)}" target="_blank" rel="noopener" class="sc-btn sc-btn-whatsapp">${t("cta.whatsapp", lang)}</a>
@@ -2308,6 +2417,7 @@ function renderBackupBlock(widget, container) {
   /**
  * SolarConnect Block Preset - Benefit Calculator (`benefit`)
  */
+
 
 
 
@@ -2410,6 +2520,9 @@ function renderBenefitBlock(widget, container) {
             <canvas class="js-cashflow-canvas" style="width:100%; height:200px;"></canvas>
           </div>
 
+          ${renderEcoBox(result)}
+          ${renderPackageCard(result, widget)}
+
           <div style="display: flex; gap: 12px;">
             <button class="sc-btn sc-btn-full js-open-lead">${t("form.submit", lang)}</button>
             <a href="${widget.getWhatsAppUrl(result)}" target="_blank" rel="noopener" class="sc-btn sc-btn-whatsapp">${t("cta.whatsapp", lang)}</a>
@@ -2446,6 +2559,7 @@ function renderBenefitBlock(widget, container) {
   /**
  * SolarConnect Block Preset - Finance Calculator (`finance`)
  */
+
 
 
 
@@ -2562,6 +2676,9 @@ function renderFinanceBlock(widget, container) {
           </div>
         </div>
       ` : ""}
+
+      ${renderEcoBox(solarResult)}
+      ${renderPackageCard(solarResult, widget)}
 
       <div style="margin-top: 20px; display: flex; gap: 12px;">
         <button class="sc-btn sc-btn-full js-open-lead">${t("form.submit", lang)}</button>

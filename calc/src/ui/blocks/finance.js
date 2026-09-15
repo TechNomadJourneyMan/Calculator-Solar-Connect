@@ -7,6 +7,7 @@ import { calcFinance } from "../../core/finance.js";
 import { formatCurrency, formatKW } from "../../core/format.js";
 import { t } from "../i18n.js";
 import { trackEvent } from "../../analytics/track.js";
+import { renderEcoBox, renderPackageCard } from "../components.js";
 
 export function renderFinanceBlock(widget, container) {
   const lang = widget.options.lang || "ru";
@@ -117,6 +118,9 @@ export function renderFinanceBlock(widget, container) {
           </div>
         </div>
       ` : ""}
+
+      ${renderEcoBox(solarResult)}
+      ${renderPackageCard(solarResult, widget)}
 
       <div style="margin-top: 20px; display: flex; gap: 12px;">
         <button class="sc-btn sc-btn-full js-open-lead">${t("form.submit", lang)}</button>
